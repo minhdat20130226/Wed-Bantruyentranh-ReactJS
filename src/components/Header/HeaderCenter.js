@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import './Header.scss'
 import logo from '../../assets/logo-bookbuy.png';
+import { PATH}  from '../../utils/constant';
 class HeaderCenter extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +54,7 @@ class HeaderCenter extends Component {
             {/* Shopping cart */}
             <Nav className='catory'>
               <i className="bi bi-cart"></i>
-              <Nav.Link href="#cart">Giỏ hàng
+              <Nav.Link href={PATH.CART}>Giỏ hàng
               <span style={{marginLeft:"5px"}}>(0)</span>
                 </Nav.Link>
             </Nav>

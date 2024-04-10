@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import { Router,Route } from 'react-router-dom';
+
 import './App.scss';
 import { Fragment } from 'react';
 import {Outlet} from 'react-router-dom';
@@ -12,9 +11,10 @@ function App() {
       <Header/>
     </div>
     <div className='main-container'>
+      <Outlet/>
       <div className='sidenav-container'></div>
       <div className='app-container'>
-         <Outlet/>
+         
          </div>
     </div>
      
