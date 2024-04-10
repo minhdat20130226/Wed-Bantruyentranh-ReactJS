@@ -5,22 +5,27 @@ import reportWebVitals from './reportWebVitals';
 import './styles/global.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RoutesHeaderTop from './routes/RoutesHeaderTop';
+import RoutesHeader from './routes/RoutesHeader';
 import "bootstrap-icons/font/bootstrap-icons.css";
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<App />}>  
-          {RoutesHeaderTop.map((p,i) => (
-        <Route path={p.path} element={<p.component />} />
-      ))}
-            </Route>
-  
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
-);
 
+class Root extends React.Component {
+
+  render() {
+    return (
+      <React.StrictMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              {RoutesHeader.map((p, i) => (
+                <Route key={i} path={p.path} target='' element={<p.component />} />
+              ))}
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </React.StrictMode>
+    );
+  }
+}
+
+ReactDOM.render(<Root />, document.getElementById('root'));
 reportWebVitals();

@@ -57,22 +57,21 @@
 
 .hot-line {
     display: flex;
-    align-items: center; // Căn chỉnh các phần tử theo chiều dọc
-    justify-content: flex-end; // Căn chỉnh các phần tử theo chiều ngang, để <i> ở bên trái
-    gap: 10px; // Khoảng cách giữa các phần tử
-
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px; 
     i {
 
-        order: -1; // Đặt thứ tự hiển thị trước, để <i> hiển thị trước tiên
+        order: -1;
 
     }
 
     span {
         display: flex;
-        flex-direction: column; // Hiển thị các phần tử theo chiều dọc
+        flex-direction: column;
 
         p {
-            margin: 0; // Loại bỏ margin mặc định
+            margin: 0;
         }
     }
 }
@@ -156,7 +155,7 @@
     }
 }
 
-// HEADER BOTTOM
+// HEADER BOTTOM8
 .dropdown-header-bottom {
     .dropdown {
         margin: 0 40px;
@@ -166,7 +165,6 @@
             border: none;
             background-color: white !important;
             color: #333333;
-            // border-radius: 0;
         }
     }
 }
@@ -238,7 +236,7 @@
         div:nth-child(2) {
             .item {
                 div:nth-child(2) {
-                    margin-left: -5px;
+                    margin-left: -6px;
                 }
 
             }
