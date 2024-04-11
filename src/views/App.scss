@@ -1,24 +1,50 @@
-.body{
+
+
+html > body {
+    min-height: 100%;
+    height: auto;
+    /* background: #ffffff; */
+}
+#root{
     height: 100%;
     font-family: 'HelveticaNeue';
     line-height: 18px;
-    background: #f8f8f8;
+    background: #f8f8f8 !important;
     position: relative;
     color: #333;
-    font-size: 12px;
+
     margin: 0;
     padding: 0;
 }
 
-.container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 .header-container{
     background-color: #f8f8f8;
 }
 a {
     text-decoration: none !important;
   }
+  
+  .container {
+    margin-right: auto ;
+    margin-left: auto ;
+    padding-left: 15px ;
+    padding-right: 15px ;
+    
+    @media (min-width: 1200px) {
+        width: 1170px;
+    }
+
+    @media (min-width: 992px) {
+        width: 970px;
+    }
+
+    @media (min-width: 768px) {
+        width: 750px;
+    }
+}
+
+.main-container{
+    .container{
+        height: 800px;
+    }
+}

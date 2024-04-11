@@ -1,5 +1,9 @@
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
+import './homepage.scss'
+import Banner from './Banner/Banner';
+import {Container} from 'react-bootstrap';
 
 class HomePage extends Component{
     constructor(props){
@@ -9,11 +13,11 @@ class HomePage extends Component{
     render(){
 
         return(
-            <div>
-                    HomePage
+            <Container>
+                    <Banner/>   
 
 
-            </div>
+            </Container>
 
 
         );

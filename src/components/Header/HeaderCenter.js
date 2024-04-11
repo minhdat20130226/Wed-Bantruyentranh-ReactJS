@@ -20,7 +20,7 @@ class HeaderCenter extends Component {
   render() {
     return (
       <Navbar expand="lg" className="bg-body-tertiary header-search">
-        <Container fluid>
+        <Container >
 
           {/* Toggle button for collapsed nav */}
           <Navbar.Collapse id="navbarScroll">
@@ -46,7 +46,7 @@ class HeaderCenter extends Component {
             <div className="hot-line">
               <i class="bi bi-headset"></i>
               <span className="">
-                <p style={{color:"#eb7c26",fontWeight:700}}>0933 109 009</p>
+                <p className='txt-phone' style={{color:"#eb7c26",fontWeight:700}}>0933 109 009</p>
                 <p className="">Hot line</p>
               </span>
             </div>
