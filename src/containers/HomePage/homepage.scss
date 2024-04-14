@@ -3,25 +3,25 @@
     margin-top: 20px;
 
     .container-banner {
-        width: 890px;
+        .container{
+        display: flex;
         height: 320px;
         position: relative;
-        float: right;
-        left: -166px;
+   
+       
         .main-slide {
             width: 100%;
-            margin-left: 10px;
-        }
+         }
 
         .control-silde {
             position: absolute;
-            bottom: 9px;
+            bottom: 0;
             background: #f5f3ec;
             opacity: 0.8;
             z-index: 1;
             width: 100%;
         }
-
+    }
     }
 
 }
@@ -84,3 +84,5 @@
         }
     }
 }
+
+// PROMOTE BANNERS

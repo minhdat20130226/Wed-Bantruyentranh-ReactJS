@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import './homepage.scss'
 import Banner from './Banner/Banner';
+import PromoteBanner from './Banner/PromoteBanner'
 import {Container} from 'react-bootstrap';
 
 class HomePage extends Component{
@@ -13,12 +14,10 @@ class HomePage extends Component{
     render(){
 
         return(
-            <Container>
-                    <Banner/>   
-
-
-            </Container>
-
+            <>
+            <Banner/>                 
+            <PromoteBanner/>
+            </>
 
         );
 
