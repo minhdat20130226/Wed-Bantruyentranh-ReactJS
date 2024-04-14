@@ -10,16 +10,17 @@
    
        
         .main-slide {
-            width: 100%;
+            width: auto;
+            position: absolute;
          }
 
         .control-silde {
-            position: absolute;
-            bottom: 0;
-            background: #f5f3ec;
+            position: relative;
+            top: 90%;
+            background-color: #f5f3ec;
             opacity: 0.8;
-            z-index: 1;
-            width: 100%;
+            z-index: 7;
+            width: 880px;
         }
     }
     }
@@ -86,3 +87,8 @@
 }
 
 // PROMOTE BANNERS
+.promote-banner{
+    .container{
+        margin: 30px auto;
+    }
+}

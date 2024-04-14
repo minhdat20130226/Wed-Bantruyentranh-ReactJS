@@ -1,29 +1,30 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
-import {Container} from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
-
-class PromoteBanner extends Component{
-    constructor(props){
+import { Container, Image, Col, Row } from 'react-bootstrap';
+import imgTest from '../../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg'
+class PromoteBanner extends Component {
+    constructor(props) {
         super(props)
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
             <div className='promote-banner'>
-            <Container>
-              <Dropdown.Menu show>
-                <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                </Dropdown.Menu>
-
-
-            </Container>
+                <Container>
+                    <Row>
+                        <Col xs={6} md={4}>
+                            <Image src={imgTest} fluid  />
+                        </Col>
+                        <Col xs={6} md={4}>
+                            <Image src={imgTest} fluid  />
+                        </Col>
+                        <Col xs={6} md={4}>
+                            <Image src={imgTest} fluid  />
+                        </Col>
+                    </Row>
+                </Container>
 
             </div>
         );
