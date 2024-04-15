@@ -33,7 +33,7 @@ class Banner extends Component {
     return (
       <div className='container-banner'>
         <Container>
-        <div style={{width:'240px',marginRight:'10px'}}></div>
+        <div style={{width:'240px',marginRight:'10px',backgroundColor:'#fff'}}></div>
         <div className=''>
           <div className='main-slide'>
             <Carousel data-bs-theme="dark" controls={false} activeIndex={this.state.activeButtonIndex} onSelect={this.handleSlide}>
