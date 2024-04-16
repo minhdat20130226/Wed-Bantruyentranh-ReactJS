@@ -121,7 +121,7 @@
                 a {
                     text-decoration: none;
                     color: #eb7c26;
-                    font-size: 13px;
+                    font-size: 14px;
                     font-weight: bold;
                     float: right;
                 }
@@ -288,11 +288,13 @@
 
 .buy-dialog {
     position: absolute;
-    width: 220px;
-    // display: none;
-    z-index: 555;
-    top: 700px;
+    width: 20%;
+    height: 383px;
     .card {
+        display: none;
+        position: relative;
+        top: 10px;
+        width: 240px !important;
         background-color: #e7e7e7;
         box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.2);
         .card-body{
