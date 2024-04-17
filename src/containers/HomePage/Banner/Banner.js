@@ -36,7 +36,7 @@ class Banner extends Component {
         <div style={{width:'240px',marginRight:'10px',backgroundColor:'#fff'}}></div>
         <div className=''>
           <div className='main-slide'>
-            <Carousel data-bs-theme="dark" controls={false} activeIndex={this.state.activeButtonIndex} onSelect={this.handleSlide}>
+            <Carousel data-bs-theme="dark" controls={false} activeIndex={this.state.activeButtonIndex} onSelect={this.handleSlide} direction="prev">
               {carouselItems.map((item, index) => (
                 <Carousel.Item key={index} interval={1200} >
                   <Link className="nav-link" to={PATH.PROMOTIONPROGRAM} target='blank'>

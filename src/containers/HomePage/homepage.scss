@@ -101,6 +101,7 @@
     .container {
         display: flex;
         justify-content: space-between;
+        margin-bottom: 35px;
 
         .it {
             margin-left: 13px;
@@ -130,7 +131,6 @@
             .card-body {
                 text-align: center;
                 border-radius: 0;
-                padding-bottom: 0;
 
                 .bi-circle-fill {
                     font-size: 37px;
@@ -274,7 +274,7 @@
         }
 
         .btn-g {
-            margin: 10px 0;
+            margin-top: 10px;
 
             .btn-like {
                 i {
@@ -290,6 +290,7 @@
     position: absolute;
     width: 20%;
     height: 383px;
+
     .card {
         display: none;
         position: relative;
@@ -297,11 +298,13 @@
         width: 240px !important;
         background-color: #e7e7e7;
         box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.2);
-        .card-body{
+
+        .card-body {
             padding: 10px;
+
             &::before {
                 content: "";
-        
+
                 border-top: 20px solid transparent;
                 border-bottom: 20px solid transparent;
                 border-right: 20px solid #e7e7e7;
@@ -314,3 +317,183 @@
 
 }
 
+// WEEKBOOK
+.week-book {
+    .container {
+        .nav-week-book {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            background-color: #fff;
+            padding: 15px 20px 10px 20px;
+
+            .r {
+                flex-grow: 1;
+                font-weight: bold;
+                font-size: 18px;
+                color: #645E5E;
+            }
+
+            .l {
+                order: 1;
+
+                a {
+                    background-color: #fff;
+                }
+            }
+
+            .hv {
+                a {
+                    border: none;
+                    margin-right: 20px;
+                    padding: 0 20px 0 0;
+                    opacity: 0.7;
+                    border-right: 1px solid #E9E9E9;
+                    color: #333;
+
+                    &:hover {
+                        color: #eb7c26;
+                        text-decoration: underline !important;
+                    }
+                }
+            }
+
+            .view-more-link {
+
+                a {
+                    padding: 0;
+                    text-decoration: none;
+                    padding-right: 15px;
+                    color: #eb7c26;
+                    font-size: 13px;
+                    font-weight: bold;
+                    float: right;
+
+                    &:hover {
+                        color: #db240f;
+                        text-decoration: underline !important;
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+
+
+// CARD PRODUCT
+.card-product {
+    width: 259px;
+    padding: 10px;
+    background-color: #fff;
+
+    .img-product {
+        display: block;
+        margin: 0 auto;
+
+        img {
+            width: 135px;
+            max-width: 100%;
+            border-radius: 0;
+            margin: 0 auto;
+        }
+    }
+
+    .card-body {
+        padding: 0;
+        margin-top: 6px;
+
+        .title-product {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            padding: 0 2px;
+            height: 40px;
+            overflow: hidden;
+            font-weight: 500;
+            &:hover {
+                text-decoration: underline !important;
+                color: #1d9d74;
+                ;
+            }
+        }
+
+        .author-product {
+            color: #1d9d74;
+            font-size: 12px;
+            margin: 6px 0;
+            font-weight: 500;
+        }
+
+        .price-group {
+            .price {
+                text-align: left;
+                text-decoration: none;
+                font-size: 16px;
+                color: #f15c22;
+                font-weight: bold;
+            }
+
+            .del-price {
+                font-size: 12px;
+                text-decoration: line-through;
+                opacity: 0.5;
+                padding: 0 5px;
+                color: #000;
+            }
+
+            .sale-off {
+                color: #fff;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                text-align: center;
+                position: relative;
+                line-height: 15px;
+                text-transform: uppercase;
+                font-size: 1.2rem;
+                padding: 3px;
+                background: #f51919;
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+.week-book {
+    .content-week-book {
+        padding-bottom: 10px;
+        background-color: #fff;
+
+        .carousel-indicators {
+            display: none;
+        }
+
+        .carousel.slide {
+            a{
+                display: block;
+                width: inherit;
+                top: 88px;
+               
+                span{
+                    background-color: #645E5E;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    border-radius: 50% !important;
+                    width: 30px !important;
+                    height: 30px !important;
+                    opacity: 0.8 !important;
+                }
+            }
+          
+            .carousel-inner{
+                .carousel-item.active{
+                    display: flex;
+                }
+            }
+        }
+    }
+
+}

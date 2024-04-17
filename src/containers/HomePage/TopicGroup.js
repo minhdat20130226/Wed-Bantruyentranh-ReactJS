@@ -59,8 +59,8 @@ class TopicGroup extends Component {
                             <a href='/'>Xem thêm<i class="bi bi-caret-right-fill"></i></a>
                         </Card.Header>
                         <Card.Body>
-                            <i className="bi bi-circle-fill">
-                                <span className=''>-36% </span>
+                             <i class="bi bi-circle-fill">
+                                <i class="bi bi-hand-thumbs-up-fill"></i>
                             </i>
                             <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(2)}>
                                 <Card.Img variant="top" src={imgTest} />
@@ -77,8 +77,8 @@ class TopicGroup extends Component {
                             <h3 className='h5'> Sách phẩm nổ bật </h3>
                         </Card.Header>
                         <Card.Body>
-                            <i className="bi bi-circle-fill">
-                                <span className=''>-36% </span>
+                              <i class="bi bi-circle-fill">
+                                <i class="bi bi-fire"></i>
                             </i>
                             <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(3)}>
                                 <Card.Img variant="top" src={imgTest} />
@@ -96,8 +96,8 @@ class TopicGroup extends Component {
                             <a href='/'>Xem thêm<i class="bi bi-caret-right-fill"></i></a>
                         </Card.Header>
                         <Card.Body>
-                            <i className="bi bi-circle-fill">
-                                <span className=''>-36% </span>
+                            <i class="bi bi-circle-fill">
+                                <i class="bi bi-bookmark-star-fill"></i>
                             </i>
                             <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(4)}>
                                 <Card.Img variant="top" src={imgTest} />
