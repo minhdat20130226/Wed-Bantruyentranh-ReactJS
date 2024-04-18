@@ -14,7 +14,6 @@ class WeekBook extends Component {
         this.setState({ key });
     };
     render() {
-
         return (
             <>
                 <div className='week-book'>
@@ -44,14 +43,15 @@ class WeekBook extends Component {
                                 <Tab.Pane eventKey="first">
                                     <Carousel data-bs-theme="dark" interval={null}>
                                         <Carousel.Item>
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
+                                            <CardProduct visibleCardBuy = {"WEEKBOOK"} />
+                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
+                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
+                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
+                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
                                         </Carousel.Item>
                                         <Carousel.Item>
-                                            <CardProduct />
+                                     <CardProduct visibleCardBuy ={"WEEKBOOK"}  />
+                                            <CardProduct visibleCardBuy ={"WEEKBOOK"}  />
                                         </Carousel.Item>
                                     </Carousel>
                                 </Tab.Pane>

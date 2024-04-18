@@ -5,6 +5,7 @@ import Banner from './Banner/Banner';
 import PromoteBanner from './Banner/PromoteBanner'
 import TopicGroup from './TopicGroup';
 import WeekBook from './Section/WeekBook';
+import RankBookWeek from './Section/RankBookWeek';
 class HomePage extends Component{
     constructor(props){
         super(props)
@@ -18,6 +19,7 @@ class HomePage extends Component{
             <PromoteBanner/>
             <TopicGroup/>
             <WeekBook/>
+            <RankBookWeek/>
             </>
 
         );

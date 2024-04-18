@@ -7,35 +7,38 @@ class TopicGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hoverCardIndex: -1,
-            position: {
-                buyDialog: 0,
-                cart: 0
-            },
-            isHovered: false,
-
+            hoverCardIndex: -1, // Chỉ số của thẻ Card đang được hover, -1 nếu không có thẻ nào được hover
+           
         };
     }
 
-    handleShowBuyDialog = (index) => {
-        this.setState({ hoverCardIndex: index });
-    }
-    handleMouseEnter = () => {
-        this.setState({ isHovered: true });
-    }
+    handleMouseEnter = (index, e) => {
+        const rect = e.target.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        this.setState(prevState => ({
+            hoverCardIndex: index,
+          
+        }));
+    };
 
     handleMouseLeave = () => {
-        this.setState({ isHovered: false });
-    }
-
+        this.setState({ hoverCardIndex: -1 });
+    };
 
     render() {
+        const { hoverCardIndex } = this.state;
+
         return (
             <div className='topic-group'>
                 <Container>
-                    <Card
-                        onMouseEnter={this.handleMouseEnter}
-                    >
+                    {[...Array(4).keys()].map(index => (
+                        <Card
+                            key={index}
+                            onMouseEnter={(e) => this.handleMouseEnter(index, e)}
+                            onMouseLeave={this.handleMouseLeave}
+                        >
                         <Card.Header className=''>
                             <h3 className='h5'> Ưu đãi trong ngày </h3>
                         </Card.Header>
@@ -43,81 +46,16 @@ class TopicGroup extends Component {
                             <i className="bi bi-circle-fill">
                                 <span className=''>-36% </span>
                             </i>
-                            <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(1)}>
+                            <Card.Link href="#" >
                                 <Card.Img variant="top" src={imgTest} />
                             </Card.Link>
                             <Card.Text className='name'>Đừng Để Bản Thân Mắc Kẹt Trong Giấc Mơ Người Khác</Card.Text>
                         </Card.Body>
                         <Card.Text className='price'>350,000đ</Card.Text>
                         <Card.Text className='del-price'>540,000đ</Card.Text>
-                    </Card>
-                    <Card
-                        onMouseEnter={this.handleMouseEnter}
-                    >
-                        <Card.Header className=''>
-                            <h3 className='h5'> SÁCH HAY </h3>
-                            <a href='/'>Xem thêm<i class="bi bi-caret-right-fill"></i></a>
-                        </Card.Header>
-                        <Card.Body>
-                             <i class="bi bi-circle-fill">
-                                <i class="bi bi-hand-thumbs-up-fill"></i>
-                            </i>
-                            <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(2)}>
-                                <Card.Img variant="top" src={imgTest} />
-                            </Card.Link>
-                            <Card.Text className='name'>Đừng Để Bản Thân Mắc Kẹt Trong Giấc Mơ Người Khác</Card.Text>
-                        </Card.Body>
-                        <Card.Text className='price'>350,000đ</Card.Text>
-                        <Card.Text className='del-price'>540,000đ</Card.Text>
-                    </Card>
-                    <Card
-                        onMouseEnter={this.handleMouseEnter}
-                    >
-                        <Card.Header className=''>
-                            <h3 className='h5'> Sách phẩm nổ bật </h3>
-                        </Card.Header>
-                        <Card.Body>
-                              <i class="bi bi-circle-fill">
-                                <i class="bi bi-fire"></i>
-                            </i>
-                            <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(3)}>
-                                <Card.Img variant="top" src={imgTest} />
-                            </Card.Link>
-                            <Card.Text className='name'>Đừng Để Bản Thân Mắc Kẹt Trong Giấc Mơ Người Khác</Card.Text>
-                        </Card.Body>
-                        <Card.Text className='price'>350,000đ</Card.Text>
-                        <Card.Text className='del-price'>540,000đ</Card.Text>
-                    </Card>
-                    <Card
-                        onMouseEnter={this.handleMouseEnter}
-                    >
-                        <Card.Header className=''>
-                            <h3 className='h5'> SÁCH MỚI </h3>
-                            <a href='/'>Xem thêm<i class="bi bi-caret-right-fill"></i></a>
-                        </Card.Header>
-                        <Card.Body>
-                            <i class="bi bi-circle-fill">
-                                <i class="bi bi-bookmark-star-fill"></i>
-                            </i>
-                            <Card.Link href="#" onMouseEnter={() => this.handleShowBuyDialog(4)}>
-                                <Card.Img variant="top" src={imgTest} />
-                            </Card.Link>
-                            <Card.Text className='name'>Đừng Để Bản Thân Mắc Kẹt Trong Giấc Mơ Người Khác</Card.Text>
-                        </Card.Body>
-                        <Card.Text className='price'>350,000đ</Card.Text>
-                        <Card.Text className='del-price'>540,000đ</Card.Text>
-                    </Card>
-                    {this.state.isHovered && (
-                        <BuyDialog
-
-                            alignLeftPosition={
-                                this.state.hoverCardIndex === 1 ? 7 :
-                                    (this.state.hoverCardIndex === 2 ? 29 :
-                                        this.state.hoverCardIndex === 3 ? 51 : 71
-                                    )
-                            }
-                        />
-                    )}
+                        {hoverCardIndex === index && <BuyDialog />}
+                        </Card>
+                    ))}
                 </Container>
             </div>
         );

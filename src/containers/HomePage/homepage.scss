@@ -80,12 +80,10 @@
 
 .main-slide {
     margin: -10px auto 0 auto;
+}
 
-    .carousel-indicators {
-        button {
-            visibility: hidden;
-        }
-    }
+.carousel-indicators {
+    display: none;
 }
 
 // PROMOTE BANNERS
@@ -102,7 +100,9 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 35px;
-
+        .buy-dialog{
+            width: 20%;
+        }
         .it {
             margin-left: 13px;
         }
@@ -209,18 +209,18 @@
     }
 }
 
-// BUY DIALOG
+// CARD BUY DIALOG
 .buy-dialog {
 
     .card {
-        width: 100% !important;
-
+        color: #212529;
         .card-title {
             text-align: left;
             padding: 3px 0;
             font-weight: bold;
             font-size: 17px;
             padding: 0 2px;
+            
         }
 
         .des-txt {
@@ -288,23 +288,21 @@
 
 .buy-dialog {
     position: absolute;
-    width: 20%;
     height: 383px;
 
     .card {
         display: none;
         position: relative;
         top: 10px;
-        width: 240px !important;
+        width: 210px !important;
         background-color: #e7e7e7;
         box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.2);
-
+        z-index: 999;
         .card-body {
             padding: 10px;
 
             &::before {
                 content: "";
-
                 border-top: 20px solid transparent;
                 border-bottom: 20px solid transparent;
                 border-right: 20px solid #e7e7e7;
@@ -318,20 +316,34 @@
 }
 
 // WEEKBOOK
+.container {
+    .nav-week-book {
+        background-color: #fff;
+        padding: 15px 20px 10px 20px;
+    }
+}
+
+.container {
+    .nav-week-book {
+        .r {
+            font-weight: bold;
+            font-size: 18px;
+            color: #645E5E;
+        }
+    }
+}
+
 .week-book {
     .container {
         .nav-week-book {
             display: flex;
             justify-content: space-between;
             list-style: none;
-            background-color: #fff;
-            padding: 15px 20px 10px 20px;
+
 
             .r {
                 flex-grow: 1;
-                font-weight: bold;
-                font-size: 18px;
-                color: #645E5E;
+
             }
 
             .l {
@@ -384,7 +396,7 @@
 
 // CARD PRODUCT
 .card-product {
-    width: 259px;
+    width: 255px;
     padding: 10px;
     background-color: #fff;
 
@@ -412,6 +424,7 @@
             height: 40px;
             overflow: hidden;
             font-weight: 500;
+
             &:hover {
                 text-decoration: underline !important;
                 color: #1d9d74;
@@ -462,38 +475,101 @@
     }
 }
 
-.week-book {
-    .content-week-book {
-        padding-bottom: 10px;
-        background-color: #fff;
+// SLIDE WEEK BOOK
+.content-week-book {
+    padding-bottom: 10px;
+    background-color: #fff;
 
-        .carousel-indicators {
-            display: none;
+    .carousel.slide {
+        a {
+            display: block;
+            width: inherit;
+            top: 88px;
+
+            span {
+                background-color: #645E5E;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50% !important;
+                width: 30px !important;
+                height: 30px !important;
+                opacity: 0.8 !important;
+            }
         }
 
-        .carousel.slide {
-            a{
-                display: block;
-                width: inherit;
-                top: 88px;
-               
-                span{
-                    background-color: #645E5E;
-                    width: 1.5rem;
-                    height: 1.5rem;
-                    border-radius: 50% !important;
-                    width: 30px !important;
-                    height: 30px !important;
-                    opacity: 0.8 !important;
-                }
+        .carousel-inner {
+            .carousel-item.active {
+                display: flex;
+
             }
-          
-            .carousel-inner{
-                .carousel-item.active{
-                    display: flex;
+
+        }
+    }
+}
+
+
+.week-book {
+    .container {
+        margin-bottom: 10px;
+    }
+}
+
+.rank-week-book {
+    .wrapper-content-week {
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        padding-left:  10px;
+        .l-img-week{
+            height: 635px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        .nav-link {
+            
+            img {
+                width: 360px;
+
+            }
+        }
+    }
+        .content-week-book {
+            margin-left: 7px;
+            width: 892px;
+
+            .carousel.slide {
+                a {
+                    top: 230px;
+                }
+
+                .carousel-inner {
+                    position: absolute;
+                    height: 766px;
+                    width: 1000px;
+                    .carousel-item.active {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+
+                    .carousel-item {
+                        .card-product {
+                            width: 295px;
+                            .price-group{
+                                .price{
+                                    font-size: 13px;
+                                    color: #f15c22;
+                                    font-weight: bold;
+                                }
+                                .del-price{
+                                    color: #999999;
+                                    text-decoration: line-through;
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-
 }

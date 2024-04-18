@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import { Container, Card, } from 'react-bootstrap';
+import { Card, } from 'react-bootstrap';
 
 class BuyDialog extends Component {
     constructor(props) {
@@ -17,25 +17,25 @@ class BuyDialog extends Component {
     handleMouseLeave = () => {
         this.setState({ isHovered: false });
     }
-    
+
     render() {
-        const { showBuyDialog, alignLeftPosition } = this.props;
-        console.log(this.state.isHovered)
+        const { nameSession, alignLeftPosition } = this.props;
         return (
             <>
                 <div
                     className='buy-dialog'
                     onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}         
-                    style={{                      
+                    onMouseLeave={this.handleMouseLeave}
+                    style={{
                         left: `${alignLeftPosition}%`
-                    }}        
+                    }}
                 >
                     <Card
-                    style={{
-                        display: `${this.state.isHovered ? 'block' : 'none'}`,
-                        left: `${225}px`
-                    }}
+
+                        style={{
+                            display: `${this.state.isHovered ? 'block' : 'block'}`,
+                            left: `${225}px`
+                        }}
                     >
                         <Card.Body>
                             <Card.Title className=''>Custom Modal Styling</Card.Title>
