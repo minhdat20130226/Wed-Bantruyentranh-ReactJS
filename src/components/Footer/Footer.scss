@@ -1,0 +1,87 @@
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+  
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+  
+      .support, .help, .account, .bookbuy {
+        width: 25%;
+        @media (max-width: 768px) {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  
+  .footer {
+    .list-group-item{
+        border: none;
+        background: transparent;
+        padding: 2px;
+        font-size: 12px;
+        a{
+        color: #333;
+            &:hover{
+                text-decoration: underline !important;
+                color: #428bca;
+            }
+        }
+    }
+
+  }
+
+  .footer{
+    margin-top: 60px;
+    .payment-box{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        border-top: 1px solid #E9E9E9;
+        border-bottom: 1px solid #E9E9E9;
+        padding: 5px 0;
+       
+        .payment-types{
+            display: flex;
+            .visa-master{
+                width: 100px;
+                height: 30px;
+                background: url(../../assets/icon/visa-master.png) left top no-repeat;
+            }
+            .onepay{
+                width: 100px;
+                height: 30px;
+                background: url(../../assets/icon/internet-banking-icon.png) left top no-repeat;
+            }
+            .moca-pay{
+                width: 100px;
+                height: 30px;
+                background: url(../../assets/icon/moca_logo.png) left top no-repeat;
+            }
+
+        }
+        .social-networks{
+            display: flex;
+            a{
+                display: block;
+                width: 26px;
+                height: 26px;
+            }
+            .fb{
+                background: url(../../assets/icon/tiktok.jpg) left top no-repeat;
+          
+            }
+            .zl{
+                background: url(../../assets/icon/zalo-icon.png) left top no-repeat;
+            }
+            .ins{
+                background: url(../../assets/icon/instagram-icon.png) left top no-repeat;
+            }
+            .tt{
+                background: url(../../assets/icon/tiktok.jpg) left top no-repeat;
+        }
+    }
+    }
+  }
