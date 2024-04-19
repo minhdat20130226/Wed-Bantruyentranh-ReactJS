@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Container, Card, Nav, Tab, Carousel, Link } from 'react-bootstrap';
+import { Container, Button, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
 import img from '../../../assets/image/rank-week.jpg'
 import BuyDialog from '../../../components/BuyDialog';
@@ -56,8 +56,10 @@ class RankBookWeek extends Component {
                             </div>
 
                         </Tab.Container>
-
-
+                      <div className='wrapbtn-rank-book'>
+                        <Button className='btn-rank-book' variant="outline-danger" href='/'>Xem thêm ››</Button>
+                      </div>
+                        
                     </Container>
                 </div>
 

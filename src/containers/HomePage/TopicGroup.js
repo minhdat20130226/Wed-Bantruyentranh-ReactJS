@@ -53,7 +53,7 @@ class TopicGroup extends Component {
                         </Card.Body>
                         <Card.Text className='price'>350,000đ</Card.Text>
                         <Card.Text className='del-price'>540,000đ</Card.Text>
-                        {hoverCardIndex === index && <BuyDialog />}
+                        {hoverCardIndex === index && <BuyDialog  positionTop={10}/>}
                         </Card>
                     ))}
                 </Container>
