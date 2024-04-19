@@ -19,7 +19,7 @@ class BuyDialog extends Component {
     }
 
     render() {
-        const { nameSession, alignLeftPosition } = this.props;
+        const { positionTop, alignLeftPosition } = this.props;
         return (
             <>
                 <div
@@ -34,7 +34,8 @@ class BuyDialog extends Component {
 
                         style={{
                             display: `${this.state.isHovered ? 'block' : 'block'}`,
-                            left: `${225}px`
+                            left: `${225}px`,
+                            top: `${positionTop}px`
                         }}
                     >
                         <Card.Body>
