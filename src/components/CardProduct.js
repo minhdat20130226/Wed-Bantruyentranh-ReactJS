@@ -26,16 +26,16 @@ class CardProduct extends Component {
         // Ẩn BuyDialog khi chuột rời khỏi CardProduct
         this.setState({ showBuyDialog: false });
     };
-    renderDialog(yourVariable) {
+    renderDialog(yourVariable,positionTop) {
         switch (yourVariable) {
           case "WEEKBOOK":  return null;
-          case "RANKBOOK":  return <BuyDialog/>;
+          case "RANKBOOK":  return <BuyDialog positionTop={positionTop}/>;
          
         }
       }
     render() {
         const { showBuyDialog } = this.state;
-        const {visibleCardBuy} = this.props;
+        const {visibleCardBuy,positionTop} = this.props;
      
         return (
             <Card className='card-product' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
@@ -54,7 +54,7 @@ class CardProduct extends Component {
                 </div>
             </Card.Body>
             {
-               showBuyDialog? this.renderDialog(visibleCardBuy):<></>
+               showBuyDialog? this.renderDialog(visibleCardBuy,positionTop):<></>
             
             }
         </Card>

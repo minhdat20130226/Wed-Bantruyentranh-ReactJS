@@ -11,7 +11,7 @@ class RankBookWeek extends Component {
     }
 
     render() {
-
+        const {nameSession} = this.props;
         return (
             <>
                 <div className='rank-week-book'>
@@ -21,7 +21,7 @@ class RankBookWeek extends Component {
 
                             <Nav variant="pills" className='nav-week-book'>
                                 <Nav.Item className='r'>
-                                    <span>TÌM KIẾM NHIỀU TRONG TUẦN</span>
+                                    <span>{nameSession}</span>
                                 </Nav.Item >
 
                             </Nav>
@@ -33,22 +33,20 @@ class RankBookWeek extends Component {
                                     </Nav.Link>
                                 </div>
                                 <Tab.Content className='content-week-book'>
-                                    <Tab.Pane eventKey="first">
-                                        <Carousel data-bs-theme="dark" interval={null}>
-                                            <Carousel.Item>
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} /> 
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                            </Carousel.Item>
-                                            <Carousel.Item>
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} /> 
-                                                <CardProduct visibleCardBuy = {"RANKBOOK"} />
-                                            </Carousel.Item>
-                                        </Carousel>
-                                    </Tab.Pane>
+                                <Tab.Pane eventKey="first">
+                                <Carousel interval={null}>
+                                    <Carousel.Item>
+                                        {[1, 2, 3, 4, 5, 6].map((_, index) => (
+                                            <CardProduct key={index} visibleCardBuy={"RANKBOOK"} positionTop={index < 3 ? -6 : -70} />
+                                        ))}
+                                    </Carousel.Item>
+                                    <Carousel.Item>
+                                        {[1, 2].map((_, index) => (
+                                             <CardProduct key={index} visibleCardBuy={"RANKBOOK"} positionTop={index < 3 ? -6 : -70} />
+                                        ))}
+                                    </Carousel.Item>
+                                </Carousel>
+                            </Tab.Pane>
 
                             
                                 </Tab.Content>

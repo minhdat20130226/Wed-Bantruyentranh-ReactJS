@@ -19,7 +19,9 @@ class HomePage extends Component{
             <PromoteBanner/>
             <TopicGroup/>
             <WeekBook/>
-            <RankBookWeek/>
+            <RankBookWeek nameSession={"TÌM KIẾM NHIỀU TRONG TUẦN"}/>
+            <RankBookWeek nameSession={"DANH MỤC ĐỀ CỬ"}/>
+            <RankBookWeek nameSession={"SẮP RA MẮT"}/>
             </>
 
         );
