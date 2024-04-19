@@ -291,12 +291,12 @@
 
 .buy-dialog {
     position: absolute;
-    height: 383px;
+    // height: 383px;
 
     .card {
         display: none;
         position: relative;
-        top: -75px;
+        top: -5px;
         width: 210px !important;
         background-color: #e7e7e7;
         box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.2);
@@ -563,7 +563,7 @@
                         .carousel-item {
                             .card-product {
                                 width: 295px;
-
+                                border: none;
                                 .price-group {
                                     .price {
                                         font-size: 13px;

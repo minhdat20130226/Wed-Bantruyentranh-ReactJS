@@ -33,7 +33,7 @@ class BuyDialog extends Component {
                     <Card
 
                         style={{
-                            display: `${this.state.isHovered ? 'block' : 'block'}`,
+                            display: `${true? 'block' : 'block'}`,
                             left: `${225}px`,
                             top: `${positionTop}px`
                         }}
