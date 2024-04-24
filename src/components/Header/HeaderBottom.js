@@ -35,7 +35,7 @@ class HeaderBottom extends Component {
     async componentDidMount() {
         try {
             const responseData = await categoryService.getCategoryGenres();
-            this.setState({ categoryGenresData: responseData.data.category });
+            this.setState({ categoryGenresData: responseData });
         } catch (error) {
             console.error('Service Error:', error);
         }
