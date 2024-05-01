@@ -4,12 +4,15 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import './Header.scss'
 import logo from '../../assets/logo-bookbuy.png';
-import { PATH}  from '../../utils/constant';
+import { PATH } from '../../utils/constant';
+
+import categoryService from '../../servieces/categoryService';
 class HeaderCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: 'Tất cả'
+      selectedItem: 'Tất cả',
+      genresName: []
     };
   }
 
@@ -17,7 +20,17 @@ class HeaderCenter extends Component {
     this.setState({ selectedItem: itemTitle });
   };
 
+    async componentDidMount() {
+    try {
+        const responseData = await categoryService.getGenresName();
+        this.setState({ genresName: responseData });
+    } catch (error) {
+        console.error('Service Error:', error);
+    }
+}
   render() {
+    
+    console.log(this.state.genresName)
     return (
       <Navbar expand="lg" className="bg-body-tertiary header-search">
         <Container >
@@ -29,10 +42,14 @@ class HeaderCenter extends Component {
               <img src={logo} alt="Logo" height="30" />
             </Navbar.Brand>
             <div className='search'>
-              <DropdownButton id="dropdown-basic-button" className='dropdown-search' title={this.state.selectedItem}>
-                <Dropdown.Item onClick={() => this.handleItemClick('Action')}>Action</Dropdown.Item>
-                <Dropdown.Item onClick={() => this.handleItemClick('Another action')}>Another action</Dropdown.Item>
-                <Dropdown.Item onClick={() => this.handleItemClick('Something else')}>Something else</Dropdown.Item>
+              <DropdownButton id="dropdown-button-genres-find" className='dropdown-search' title={this.state.selectedItem}>
+                <Dropdown.Item onClick={() => this.handleItemClick('Tất cả')}>Tất cả</Dropdown.Item>
+
+                {Array.isArray(this.state.genresName) && this.state.genresName.map((genre, index) => (
+                  <Dropdown.Item key={index} onClick={() => this.handleItemClick(genre)}>
+                    {genre}
+                  </Dropdown.Item>
+                ))} 
               </DropdownButton>
               {/* Search form */}
               <Form className="d-flex me-3 form-search">
@@ -46,7 +63,7 @@ class HeaderCenter extends Component {
             <div className="hot-line">
               <i class="bi bi-headset"></i>
               <span className="">
-                <p className='txt-phone' style={{color:"#eb7c26",fontWeight:700}}>0933 109 009</p>
+                <p className='txt-phone' style={{ color: "#eb7c26", fontWeight: 700 }}>0933 109 009</p>
                 <p className="">Hot line</p>
               </span>
             </div>
@@ -55,8 +72,8 @@ class HeaderCenter extends Component {
             <Nav className='catory'>
               <i className="bi bi-cart"></i>
               <Nav.Link href={PATH.CART}>Giỏ hàng
-              <span style={{marginLeft:"5px"}}>(0)</span>
-                </Nav.Link>
+                <span style={{ marginLeft: "5px" }}>(0)</span>
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

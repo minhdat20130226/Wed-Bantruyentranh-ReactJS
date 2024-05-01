@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Container, Dropdown, DropdownButton, Button, Stack, Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import km from '../../assets/image/km.jpg'
 import tow from '../../assets/image/tow.png'
 import { PATH } from '../../utils/constant';
@@ -14,7 +14,9 @@ class HeaderBottom extends Component {
         this.state = {
             showMenu: false,
             hoveredDanhMuc: null,
-            categoryGenresData: {}
+            categoryGenresData: {},
+            dataGenre:{},
+
         };
     }
 
@@ -41,6 +43,18 @@ class HeaderBottom extends Component {
         }
     }
 
+    handleItemClick =  (genre) => {
+        try {
+            const pathSub = genre.replace(/\s+/g, "-");
+            const navigate = this.props.navigate;
+            navigate(`${PATH.SEARCHBOOKPAGE}/${pathSub}`, { state: {dataGenre:"qưe"} });
+        } catch (error) {
+            console.error('Error data:', error)
+        }
+    }
+
+
+
     render() {
         const { categoryGenresData } = this.state;
         const danh_muc = Object.keys(categoryGenresData);
@@ -65,35 +79,36 @@ class HeaderBottom extends Component {
                                     id={`dropdown-${danh_muc}-button`}
                                     className="item"
                                     drop="end"
-                                    as={Link} to={PATH.SEARCH}
+                                    // as={Link} to={`${PATH.SEARCHBOOKPAGE}/${danh_muc}`}
                                     title={danh_muc}
                                     show={this.state.showMenu && this.state.hoveredDanhMuc === danh_muc}
                                     onMouseEnter={() => this.handleMouseEnter(danh_muc)}
                                     onMouseLeave={this.handleMouseLeave}
+                                    onClick={() => this.handleItemClick(danh_muc)}
                                 >
                                     <div className="menu-box-item" style={{ display: 'flex', top: `${positionTop[index]}px`}}>
                                         <div>
                                             <Dropdown.Header>Nổi bật</Dropdown.Header>
                                             {categoryGenresData[danh_muc].slice(0, 7).map((item, index) => (
-                                                <Dropdown.Item key={index}  as={Link} to={PATH.SEARCH}>{item.storyAuthorName}</Dropdown.Item>
+                                                <Dropdown.Item key={index}  as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyAuthorName}</Dropdown.Item>
                                             ))}
                                         </div>
                                         <div>
                                             <Dropdown.Header>Dịch giả</Dropdown.Header>
                                             {categoryGenresData[danh_muc].slice(0, 6).map((item, index) => (
-                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCH}>{item.storyTranslatorName}</Dropdown.Item>
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyTranslatorName}</Dropdown.Item>
                                             ))}
                                         </div>
                                         <div>
                                             <Dropdown.Header>Nhà xuất bản</Dropdown.Header>
                                             {categoryGenresData[danh_muc].slice(0, 7).map((item, index) => (
-                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCH}>{item.placePublicationName}</Dropdown.Item>
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.placePublicationName}</Dropdown.Item>
                                             ))}
                                         </div>
                                         <div>
                                             <Dropdown.Header>Tác giả</Dropdown.Header>
                                             {categoryGenresData[danh_muc].slice(0, 6).map((item, index) => (
-                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCH}>{item.storyAuthorName}</Dropdown.Item>
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyAuthorName}</Dropdown.Item>
                                             ))}
                                         </div>
                                     </div>
@@ -124,4 +139,13 @@ class HeaderBottom extends Component {
     }
 }
 
-export default HeaderBottom;
+function addHookTo(Component) {
+    function CompWithHook(props) {
+        const navigate = useNavigate();
+      return <Component {...props} navigate={navigate} />;
+    }
+    return CompWithHook;
+  }
+  
+
+export default addHookTo(HeaderBottom);
