@@ -26,40 +26,45 @@ class CardProduct extends Component {
         // Ẩn BuyDialog khi chuột rời khỏi CardProduct
         this.setState({ showBuyDialog: false });
     };
-    renderDialog(yourVariable,positionTop) {
+    renderDialog(yourVariable, positionTop) {
         switch (yourVariable) {
-          case "WEEKBOOK":  return null;
-          case "RANKBOOK":  return <BuyDialog positionTop={positionTop}/>;
-         
+            case "WEEKBOOK": return null;
+            case "RANKBOOK": return <BuyDialog positionTop={positionTop} />;
+
         }
-      }
+    }
     render() {
-        const { showBuyDialog } = this.state;
-        const {visibleCardBuy,positionTop} = this.props;
-     
+        const { showBuyDialog } = this.state
+        const { visibleCardBuy, positionTop } = this.props
+        const { dataBook } = this.props
         return (
-            <Card className='card-product' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-            <Card.Link className='img-product' href='#'>
-                <Card.Img variant="top" src={img} href='#' />
-            </Card.Link>
-            <Card.Body>
-                <Card.Link href='#' className='title-product'>Combo 2 Tập Hay Vẽ Thì Vẽ Hay</Card.Link>
-                 <Card.Text className='author-product'>Cynthia Kane</Card.Text> 
-                <div className='price-group'>
-                    <span className='price'>83,000
-                        <span class="cur">₫</span>
-                    </span>
-                    <span className='del-price'>98,000</span>
-                    <span className='sale-off'>-15%</span>
-                </div>
-            </Card.Body>
-            {
-               showBuyDialog? this.renderDialog(visibleCardBuy,positionTop):<></>
-            
-            }
-        </Card>
-        
-            
+            <>
+                {dataBook &&
+                    <Card className='card-product' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+                        <Card.Link className='img-product' href='#'>
+                        {/* <Card.Img variant="top" src={dataBook.photoUrl} href='#' /> */}
+                            <Card.Img variant="top" src={img} href='#' />
+                        </Card.Link>
+                        <Card.Body>
+                            <Card.Link href='#' className='title-product'>{dataBook.name}</Card.Link>
+                            <Card.Text className='author-product'>
+                            {dataBook.authorList.map(author => author.name).join(' ')}
+                                </Card.Text>
+                            <div className='price-group'>
+                                <span className='price'>{dataBook.price}
+                                    <span class="cur">₫</span>
+                                </span>
+                                <span className='del-price'>{dataBook.price*dataBook.reductionRate}</span>
+                                <span className='sale-off'>{dataBook.reductionRate}%</span>
+                            </div>
+                        </Card.Body>
+                        {
+                            showBuyDialog ? this.renderDialog(visibleCardBuy, positionTop) : <></>
+
+                        }
+                    </Card>
+                }
+            </>
         );
     }
 }

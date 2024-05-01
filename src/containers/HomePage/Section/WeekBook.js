@@ -2,23 +2,67 @@
 import React, { Component } from 'react';
 import { Container, Card, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
+import { PATH } from '../../../utils/constant'
+import WeekBookService from '../../../servieces/WeekBookService';
 
 class WeekBook extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            key: 'home'
+            newBooks: null,
+            comingSoonBooks: null,
+            bestSellBooks: null
         };
+
     }
     handleSelect = (key) => {
-        this.setState({ key });
+        this.setState({ key })
+    }
+
+    componentDidMount() {
+        this.fetchNewBooks()
+        this.fetchComingSoonBooks()
+        this.fetchBestSellBooks()
+         
+    }
+
+    fetchNewBooks = async () => {
+        try {
+            const newBooks = await WeekBookService.getAllNewBook();
+            this.setState({ newBooks: newBooks });
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
+
+    fetchComingSoonBooks = async () => {
+            try {
+                const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
+                console.log("adw",comingSoonBooks)
+                this.setState({ comingSoonBooks: comingSoonBooks });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+    };
+
+    fetchBestSellBooks = async () => {
+            try {
+                const bestSellBooks = await WeekBookService.getAllBestSellBook();
+                this.setState({ bestSellBooks: bestSellBooks });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+    };
+
+
     render() {
+        const { newBooks, comingSoonBooks, bestSellBooks } = this.state;
+        
         return (
             <>
                 <div className='week-book'>
                     <Container>
-                       
+
                         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
 
                             <Nav variant="pills" className='nav-week-book'>
@@ -35,44 +79,43 @@ class WeekBook extends Component {
                                     <Nav.Link eventKey="three">Sách bán chạy</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='l view-more-link'>
-                                    <Nav.Link href='/'>Xem thêm<i class="bi bi-caret-right-fill"></i></Nav.Link>
+                                    <Nav.Link href={PATH.SEARCHBOOKPAGE} >Xem thêm<i class="bi bi-caret-right-fill"></i></Nav.Link>
                                 </Nav.Item>
                             </Nav>
 
                             <Tab.Content className='content-week-book'>
                                 <Tab.Pane eventKey="first">
                                     <Carousel data-bs-theme="dark" interval={null}>
-                                        <Carousel.Item>
-                                            <CardProduct visibleCardBuy = {"WEEKBOOK"} />
-                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
-                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
-                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
-                                            <CardProduct visibleCardBuy = {"WEEKBOOK"}  />
-                                        </Carousel.Item>
-                                        <Carousel.Item>
-                                     <CardProduct visibleCardBuy ={"WEEKBOOK"}  />
-                                            <CardProduct visibleCardBuy ={"WEEKBOOK"}  />
-                                        </Carousel.Item>
+                                        {newBooks && newBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
+                                            <Carousel.Item key={index}>
+                                                {newBooks.slice(index, index + 5).map((bookk, cardIndex) => (
+                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                ))}
+                                            </Carousel.Item>
+                                        ))}
                                     </Carousel>
                                 </Tab.Pane>
 
                                 <Tab.Pane eventKey="second">
                                     <Carousel data-bs-theme="dark" interval={null}>
-                                      
+                                    {comingSoonBooks && comingSoonBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
+                                            <Carousel.Item key={index}>
+                                                {comingSoonBooks.slice(index, index + 5).map((bookk, cardIndex) => (
+                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                ))}
+                                            </Carousel.Item>
+                                        ))}
                                     </Carousel>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="three">
                                     <Carousel data-bs-theme="dark" interval={null}>
-                                        <Carousel.Item>
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
-                                            <CardProduct />
-                                        </Carousel.Item>
-                                        <Carousel.Item>
-                                            <CardProduct />
-                                        </Carousel.Item>
+                                    {bestSellBooks && bestSellBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
+                                            <Carousel.Item key={index}>
+                                                {bestSellBooks.slice(index, index + 5).map((bookk, cardIndex) => (
+                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                ))}
+                                            </Carousel.Item>
+                                        ))}
                                     </Carousel>
                                 </Tab.Pane>
                             </Tab.Content>
