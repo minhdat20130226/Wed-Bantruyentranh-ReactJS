@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Carousel } from 'react-bootstrap';
+import {Carousel, Container,Image } from 'react-bootstrap';
 import IMG1 from '../../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg';
 import IMG2 from '../../../assets/image/ghg.jpg';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ class Banner extends Component {
     super(props);
     this.state = {
       activeButtonIndex: 0 // Mặc định là button đầu tiên
-    };
+    }; 
   }
 
   handleSlide = (selectedIndex, e) => {
@@ -32,25 +32,31 @@ class Banner extends Component {
 
     return (
       <div className='container-banner'>
-        <div className='main-slide' style={{ height: '320px' }}>
-          <Carousel data-bs-theme="dark" controls={false} activeIndex={this.state.activeButtonIndex} onSelect={this.handleSlide}>
-            {carouselItems.map((item, index) => (
-              <Carousel.Item key={index} interval={1000} style={{width: '880px'}}>
-                <Link className="nav-link" to={PATH.PROMOTIONPROGRAM} target='blank'>
-                  <img className="d-block" src={item.img} alt={`Slide ${index + 1}`} />
-                </Link>
-              </Carousel.Item>
+        <Container>
+        <div style={{width:'240px',marginRight:'10px',backgroundColor:'#fff'}}></div>
+        <div className=''>
+          <div className='main-slide'>
+            <Carousel data-bs-theme="dark" controls={false} activeIndex={this.state.activeButtonIndex} onSelect={this.handleSlide} direction="prev">
+              {carouselItems.map((item, index) => (
+                <Carousel.Item key={index} interval={1200} >
+                  <Link className="nav-link" to={PATH.PROMOTIONPROGRAM} target='blank'>
+                    {/* <img className="d-block" src={item.img} alt={`Slide ${index + 1}`} /> */}
+                    <Image className="d-block" src={item.img} alt={`Slide ${index + 1}`}></Image>
+                  </Link>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          
+          </div>
+          <div className='control-silde'>
+          {carouselItems.map((item, index) => (
+              <span key={index} className={index === this.state.activeButtonIndex ? 'active' : ''} onClick={() => this.handleSpanClick(index)}>
+                {item.nameIndex}
+              </span>
             ))}
-          </Carousel>
-         
+          </div>
         </div>
-        <div className='control-silde'>
-        {carouselItems.map((item, index) => (
-            <span key={index} className={index === this.state.activeButtonIndex ? 'active' : ''} onClick={() => this.handleSpanClick(index)}>
-              {item.nameIndex}
-            </span>
-          ))}
-        </div>
+        </Container>
       </div>
     );
   }

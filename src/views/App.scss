@@ -1,22 +1,4 @@
 
-
-html > body {
-    min-height: 100%;
-    height: auto;
-    /* background: #ffffff; */
-}
-#root{
-    height: 100%;
-    font-family: 'HelveticaNeue';
-    line-height: 18px;
-    background: #f8f8f8 !important;
-    position: relative;
-    color: #333;
-
-    margin: 0;
-    padding: 0;
-}
-
 .header-container{
     background-color: #f8f8f8;
 }
@@ -40,12 +22,6 @@ a {
 
     @media (min-width: 768px) {
         width: 750px;
-    }
-}
-
-.main-container{
-    .container{
-        height: 800px;
     }
 }
 

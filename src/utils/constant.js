@@ -10,7 +10,8 @@ export const PATH = {
     CART: '/cart',
     QUESTIONTG: '/cau-hoi-thuong-gap',
     PROMOTIONPROGRAM: '/chuong-trinh-khuyen-mai',
-    SEARCH: '/tim-sach',
+    SEARCHBOOKPAGE: '/tim-sach',
+    SEARCHBOOKPAGEGENRE:'/tim-sach/:genre',
     SALE: '/sale-soc-xa-kho',
     SYSTEM: '/system',
 };

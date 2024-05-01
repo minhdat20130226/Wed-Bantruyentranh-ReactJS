@@ -1,46 +1,62 @@
 import React, { Component } from 'react';
 import { Navbar, Container, Dropdown, DropdownButton, Button, Stack, Image } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import km from '../../assets/image/km.jpg'
 import tow from '../../assets/image/tow.png'
 import { PATH } from '../../utils/constant';
+import categoryService from '../../servieces/categoryService';
 
-import { DANHMUC } from '../../servieces/data_example';
+const positionTop = [0, -41, -82, -123,-164,-205,-246,-287];
 
-const positionTop = [0, -41, -82, -123];
 class HeaderBottom extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showMenu: false,
-            hoveredDanhMuc: null
-        };
+            hoveredDanhMuc: null,
+            categoryGenresData: {},
+            dataGenre:{},        };
     }
 
     handleMouseEnter = (tenDanhMuc) => {
-        // Khi di chuột vào, hiển thị menu và thay đổi nội dung hiển thị
+
         this.setState({
             showMenu: true,
-            hoveredDanhMuc: tenDanhMuc // Lưu trữ tên danh mục hiện tại được di chuột
-        });
-    }
-    handleMouseLeave = () => {
-        // Khi di chuột ra khỏi, ẩn menu
-        this.setState({
-            showMenu: false,
-            hoveredDanhMuc: null // Đặt lại tên danh mục hiện tại khi di chuột ra khỏi
-        });
-    }
-    handleMenuItem = (tenDanhMuc) => {
-        // Khi di chuột vào, hiển thị menu và thay đổi nội dung hiển thị
-        this.setState({
-            showMenu: true,
-            hoveredDanhMuc: tenDanhMuc // Lưu trữ tên danh mục hiện tại được di chuột
+            hoveredDanhMuc: tenDanhMuc
         });
     }
 
+    handleMouseLeave = () => {
+        this.setState({
+            showMenu: false,
+            hoveredDanhMuc: null
+        });
+    }
+
+    async componentDidMount() {
+        try {
+            const responseData = await categoryService.getCategoryGenres();
+            this.setState({ categoryGenresData: responseData });
+        } catch (error) {
+            console.error('Service Error:', error);
+        }
+    }
+
+    handleItemClick =  (genre) => {
+        try {
+            const pathSub = genre.replace(/\s+/g, "-");
+            const navigate = this.props.navigate;
+            navigate(`${PATH.SEARCHBOOKPAGE}/${pathSub}`, { state: {dataGenre:"qưe"} });
+        } catch (error) {
+            console.error('Error data:', error)
+        }
+    }
+
+
+
     render() {
-        const danh_muc = DANHMUC.danh_muc_truyen;
+        const { categoryGenresData } = this.state;
+        const danh_muc = Object.keys(categoryGenresData);
 
         return (
             <Navbar expand="lg" className="dropdown-header-bottom header-bottom">
@@ -49,59 +65,55 @@ class HeaderBottom extends Component {
                         <DropdownButton
                             id="dropdown-basic-button"
                             title={<>
-                                <i class="bi bi-list"></i>
+
+                                <i className="bi bi-list"></i>
                                 <span className='title-dm'>Danh mục truyện</span>
                             </>}
-                            //  show={this.state.showMenu}
                             show={true}
                             onMouseEnter={() => this.handleMouseEnter("TitleDM")}
                             onMouseLeave={this.handleMouseLeave}
                         >
-
                             {danh_muc.map((danh_muc, index) => (
-
                                 <DropdownButton
                                     key={index}
-                                    id={`dropdown-${danh_muc.ten}-buttodawwdan`}
+                                    id={`dropdown-${danh_muc}-button`}
                                     className="item"
                                     drop="end"
-                                    as={Link} to={PATH.SEARCH}
-                                    title={danh_muc.ten}
-                                    show={this.state.showMenu && this.state.hoveredDanhMuc === danh_muc.ten}
-                                    // show={true}
-                                    onMouseEnter={() => this.handleMouseEnter(danh_muc.ten)}
+                                    // as={Link} to={`${PATH.SEARCHBOOKPAGE}/${danh_muc}`}
+                                    title={danh_muc}
+                                    show={this.state.showMenu && this.state.hoveredDanhMuc === danh_muc}
+                                    onMouseEnter={() => this.handleMouseEnter(danh_muc)}
                                     onMouseLeave={this.handleMouseLeave}
-
+                                    onClick={() => this.handleItemClick(danh_muc)}
                                 >
                                     <div className="menu-box-item" style={{ display: 'flex', top: `${positionTop[index]}px`}}>
-
                                         <div>
                                             <Dropdown.Header>Nổi bật</Dropdown.Header>
-                                            {danh_muc.sach.map((sach, index) => (<Dropdown.Item eventKey={index}>{sach.tac_gia}</Dropdown.Item>))}
+                                            {categoryGenresData[danh_muc].slice(0, 7).map((item, index) => (
+                                                <Dropdown.Item key={index}  as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyAuthorName}</Dropdown.Item>
+                                            ))}
                                         </div>
-                                        {/* top: -42px; */}
                                         <div>
-                                            <Dropdown.Header>Các thể loại liên quan</Dropdown.Header>
-                                            {danh_muc.sach.map((sach, index) => (<Dropdown.Item eventKey={index}>{sach.ten_sach}</Dropdown.Item>))}
+                                            <Dropdown.Header>Dịch giả</Dropdown.Header>
+                                            {categoryGenresData[danh_muc].slice(0, 6).map((item, index) => (
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyTranslatorName}</Dropdown.Item>
+                                            ))}
                                         </div>
-                                        {/* top: -84px; */}
                                         <div>
                                             <Dropdown.Header>Nhà xuất bản</Dropdown.Header>
-                                            {danh_muc.sach.map((sach, index) => (<Dropdown.Item eventKey={index}>{sach.nha_xuat_ban}</Dropdown.Item>))}
+                                            {categoryGenresData[danh_muc].slice(0, 7).map((item, index) => (
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.placePublicationName}</Dropdown.Item>
+                                            ))}
                                         </div>
-                                        {/* top: -124px; */}
                                         <div>
-                                            <Dropdown.Header>Tá c giả</Dropdown.Header>
-                                            {danh_muc.sach.map((sach, index) => (<Dropdown.Item eventKey={index}>{sach.tac_gia}</Dropdown.Item>))}
+                                            <Dropdown.Header>Tác giả</Dropdown.Header>
+                                            {categoryGenresData[danh_muc].slice(0, 6).map((item, index) => (
+                                                <Dropdown.Item key={index} as={Link} to={PATH.SEARCHBOOKPAGE}>{item.storyAuthorName}</Dropdown.Item>
+                                            ))}
                                         </div>
-
                                     </div>
-
-
                                 </DropdownButton>
-
                             ))}
-
                         </DropdownButton>
                     </div>
                     <Stack className='banner-header-bottom' direction="horizontal">
@@ -120,13 +132,20 @@ class HeaderBottom extends Component {
                                 <Button variant="danger">Sale Sốc Xả Kho</Button>
                             </Link>
                         </Stack>
-
                     </Stack>
-                </Container >
-
+                </Container>
             </Navbar>
         );
     }
 }
 
-export default HeaderBottom;
+function addHookTo(Component) {
+    function CompWithHook(props) {
+        const navigate = useNavigate();
+      return <Component {...props} navigate={navigate} />;
+    }
+    return CompWithHook;
+  }
+  
+
+export default addHookTo(HeaderBottom);

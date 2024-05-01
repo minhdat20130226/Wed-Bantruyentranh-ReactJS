@@ -10,7 +10,7 @@ import Cart from '../containers/HeaderCenter/Cart';
 import { PATH } from '../utils/constant';
 import QuestionTG from '../containers/HeaderBottom/QuestionTG';
 import Promotionprogram from '../containers/HeaderBottom/Promotionprogram';
-import Search from '../containers/Product Search/Search';
+import SearchBookPage from '../containers/Product Search/SearchBookPage'; 
 import Sale from '../containers/HeaderBottom/Sale';
 
  const  RoutesHeader = [
@@ -24,7 +24,8 @@ import Sale from '../containers/HeaderBottom/Sale';
     { path: PATH.CART, component: Cart },
     { path: PATH.QUESTIONTG, component: QuestionTG },
     { path: PATH.PROMOTIONPROGRAM, component: Promotionprogram },
-    { path: PATH.SEARCH, component: Search },
+    { path: PATH.SEARCHBOOKPAGE, component: SearchBookPage },
+    { path: PATH.SEARCHBOOKPAGEGENRE, component: SearchBookPage },
     { path: PATH.SALE, component: Sale },
   ];
 
