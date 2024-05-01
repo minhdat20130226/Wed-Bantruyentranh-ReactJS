@@ -244,11 +244,17 @@
                         justify-content: space-between;
                         align-items: center;
                         margin-top: -1px;
+
+
+                        &:hover{
+                            color: #eb7c26;
+                        }
                     }
 
                 }
             }
 
+          
         }
     }
 
@@ -358,10 +364,27 @@
             .dropdown-item{
                 color: #333333;
                 font-size: 12px;
+
+                &:hover{
+                    color: #eb7c26;
+                    background-color: #fff;
+                }
             }
         }
         
        
     }
  
+// GENRES BUTTON FIND
+.header-search{
+    .dropdown-search{
+        .dropdown-menu.show{
+            position: absolute;
+            z-index: 6666;
+            
+        }
+    }
+
+}
+
     

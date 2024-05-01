@@ -359,6 +359,10 @@
             }
 
             .hv {
+                .nav-link.active{
+                    color: #eb7c26;
+                    text-decoration: underline !important;
+                  }
                 a {
                     border: none;
                     margin-right: 20px;
@@ -370,7 +374,14 @@
                     &:hover {
                         color: #eb7c26;
                         text-decoration: underline !important;
+                        cursor: pointer;
                     }
+                    &:active {
+                        color: #eb7c26 ;
+                        text-decoration: underline !important;
+                      }
+
+                      
                 }
             }
 
@@ -489,7 +500,7 @@
             display: block;
             width: inherit;
             top: 88px;
-
+            text-align: center;
             span {
                 background-color: #645E5E;
                 width: 1.5rem;

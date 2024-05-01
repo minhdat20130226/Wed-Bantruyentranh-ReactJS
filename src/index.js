@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RoutesHeader from './routes/RoutesHeader';
 import "bootstrap-icons/font/bootstrap-icons.css";
-
 class Root extends React.Component {
 
   render() {
@@ -18,8 +17,8 @@ class Root extends React.Component {
             <Route path="/" element={<App />}>
               {RoutesHeader.map((p, i) => (
                 <Route key={i} path={p.path} target='' element={<p.component />} />
-              ))}
-            </Route>
+              ))}            
+            </Route> 
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
