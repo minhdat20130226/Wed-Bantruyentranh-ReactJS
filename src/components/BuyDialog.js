@@ -5,56 +5,30 @@ import { Card, } from 'react-bootstrap';
 class BuyDialog extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isHovered: false // Trạng thái của con trỏ chuột
-        };
-    }
-
-    handleMouseEnter = () => {
-        this.setState({ isHovered: true });
-    }
-
-    handleMouseLeave = () => {
-        this.setState({ isHovered: false });
     }
 
     render() {
-        const { positionTop, alignLeftPosition } = this.props;
+        const { data } = this.props;
+        console.log(data)
         return (
             <>
                 <div
                     className='buy-dialog'
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                    style={{
-                        left: `${alignLeftPosition}%`
-                    }}
-                >
-                    <Card
-
-                        style={{
-                            display: `${true? 'block' : 'block'}`,
-                            left: `${225}px`,
-                            top: `${positionTop}px`
-                        }}
-                    >
+                    style={{left:'210px'}}>
+                    <Card style={{display:'block'}}>
                         <Card.Body>
-                            <Card.Title className=''>Custom Modal Styling</Card.Title>
+                            <Card.Title className=''>{data.name}</Card.Title>
                             <div className='des-txt'>
-                                <p>
-                                    Cọ Stylus SilStar BuTouch Professional Hàn Quốc Tương Thích Android, iOS Butouch là thương hiệu cọ stylus của hãng SilStar (Hàn Quốc) với sứ mệnh mang lợi ích của vẽ
-                                    tranh kỹ thuật số (digital painting) đến mọi ngườCọ Stylus SilStar BuTouch Professional Hàn Quốc Tương Thích Android, iOS Butouch là thương hiệu cọ stylus của hãng SilStar
-                                    (Hàn Quốc) với sứ mệnh mang lợi ích của vẽ tranh kỹ thuật số (digital painting) đến mọi người, bất kể tuổi tác hay cấp độ sử dụng. Từ Năm 2013i, bất kể tuổi tác hay cấp độ sử dụng. Từ Năm 2013
-                                </p>
+                                <p>{data.description}</p>
                                 <a href='#'>Xem thêm</a>
                             </div>
                             <div className='price-txt'>
-                                <span className='price'>350,000đ</span>
-                                <span className='del-price'>540,000đ</span>
+                                <span className='price'>{data.price*(data.reductionRate/100)}đ</span>
+                                <span className='del-price'>{data.price}đ</span>
                             </div>
                             <div className='discount-percent'>
                                 <span className='percent-label'>Giảm giá</span>
-                                <span className='percent-txt'>36 %</span>
+                                <span className='percent-txt'>{data.reductionRate}%</span>
                             </div>
                             <div className='btn-g d-grid gap-2'>
                                 <Button variant="success">THÊM VÀO GIỎ HÀNG</Button>
