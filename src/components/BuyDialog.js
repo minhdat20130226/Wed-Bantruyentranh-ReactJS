@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
-import { Card, } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import Utils from '../constant/Utils';
 
 class BuyDialog extends Component {
     constructor(props) {
@@ -8,36 +9,35 @@ class BuyDialog extends Component {
     }
 
     render() {
-        const { data } = this.props;
-        console.log(data)
+        const { dataBook } = this.props;
         return (
             <>
                 <div
                     className='buy-dialog'
-                    style={{left:'210px'}}>
-                    <Card style={{display:'block'}}>
-                        <Card.Body>
-                            <Card.Title className=''>{data.name}</Card.Title>
-                            <div className='des-txt'>
-                                <p>{data.description}</p>
-                                <a href='#'>Xem thêm</a>
-                            </div>
-                            <div className='price-txt'>
-                                <span className='price'>{data.price*(data.reductionRate/100)}đ</span>
-                                <span className='del-price'>{data.price}đ</span>
-                            </div>
-                            <div className='discount-percent'>
-                                <span className='percent-label'>Giảm giá</span>
-                                <span className='percent-txt'>{data.reductionRate}%</span>
-                            </div>
-                            <div className='btn-g d-grid gap-2'>
-                                <Button variant="success">THÊM VÀO GIỎ HÀNG</Button>
-                                <Button variant="danger">MUA NGAY</Button>
-                                <Button className='btn-like' variant="outline-secondary">
-                                    <i className="bi bi-heart-fill"></i>Thêm vào yêu thích
-                                </Button>
-                            </div>
-                        </Card.Body>
+                    style={{left:'210px',top:'-20px'}}>
+                    <Card style={{display:'block'}}>     
+                        {dataBook && <Card.Body>
+                                <Card.Title className=''>{dataBook.name}</Card.Title>
+                                <div className='des-txt'>
+                                    <p>{dataBook.description}</p>
+                                    <a href='#'>&nbsp;Xem thêm</a>
+                                </div>
+                                <div className='price-txt'>
+                                    <span className='price'>{Utils.formatAmount(dataBook.newPrice)}đ</span>
+                                    <span className='del-price'>{Utils.formatAmount(dataBook.price)}đ</span>
+                                </div>
+                                <div className='discount-percent'>
+                                    <span className='percent-label'>Giảm giá&nbsp;</span>
+                                    <span className='percent-txt'>{dataBook.reductionRate}%</span>
+                                </div>
+                                <div className='btn-g d-grid gap-2'>
+                                    <Button variant="success">THÊM VÀO GIỎ HÀNG</Button>
+                                    <Button variant="danger">MUA NGAY</Button>
+                                    <Button className='btn-like' variant="outline-secondary">
+                                        <i className="bi bi-heart-fill"></i>Thêm vào yêu thích
+                                    </Button>
+                                </div>
+                            </Card.Body>}
                     </Card>
                 </div>
             </>
