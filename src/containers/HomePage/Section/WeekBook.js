@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
-import { Container, Card, Nav, Tab, Carousel, Link } from 'react-bootstrap';
+import { Container, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
+import Spinner from 'react-bootstrap/Spinner';
 import { PATH } from '../../../utils/constant'
 import WeekBookService from '../../../servieces/WeekBookService';
 
@@ -23,7 +24,7 @@ class WeekBook extends Component {
         this.fetchNewBooks()
         this.fetchComingSoonBooks()
         this.fetchBestSellBooks()
-         
+
     }
 
     fetchNewBooks = async () => {
@@ -36,35 +37,49 @@ class WeekBook extends Component {
     };
 
     fetchComingSoonBooks = async () => {
-            try {
-                const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
-                console.log("adw",comingSoonBooks)
-                this.setState({ comingSoonBooks: comingSoonBooks });
-            } catch (error) {
-                console.error('Error:', error);
-            }
+        try {
+            const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
+            console.log("adw", comingSoonBooks)
+            this.setState({ comingSoonBooks: comingSoonBooks });
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     fetchBestSellBooks = async () => {
-            try {
-                const bestSellBooks = await WeekBookService.getAllBestSellBook();
-                this.setState({ bestSellBooks: bestSellBooks });
-            } catch (error) {
-                console.error('Error:', error);
-            }
+        try {
+            const bestSellBooks = await WeekBookService.getAllBestSellBook();
+            this.setState({ bestSellBooks: bestSellBooks });
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
-
+    renderCarousel(eventKey, typeCard, dataBook) {
+        return (
+            <Tab.Pane eventKey={eventKey}>
+                <Carousel data-bs-theme="dark" interval={null}>
+                   { dataBook?
+                        dataBook.filter((_, index) => index % 5 === 0).map((book, index) => (
+                            <Carousel.Item key={index}>
+                                {dataBook.slice(index, index + 5).map((bookk, cardIndex) => (
+                                    <CardProduct key={cardIndex} typeCard={typeCard} dataBook={bookk} />
+                                ))}
+                            </Carousel.Item>
+                        )):
+                        <Spinner animation="border" variant="success" />}
+                </Carousel>
+            </Tab.Pane>
+        )
+    }
 
     render() {
         const { newBooks, comingSoonBooks, bestSellBooks } = this.state;
-        
+
         return (
             <>
                 <div className='week-book'>
                     <Container>
-
                         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-
                             <Nav variant="pills" className='nav-week-book'>
                                 <Nav.Item className='r'>
                                     <span>SÁCH - TRUYỆN TRANH</span>
@@ -84,40 +99,9 @@ class WeekBook extends Component {
                             </Nav>
 
                             <Tab.Content className='content-week-book'>
-                                <Tab.Pane eventKey="first">
-                                    <Carousel data-bs-theme="dark" interval={null}>
-                                        {newBooks && newBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
-                                            <Carousel.Item key={index}>
-                                                {newBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
-                                                ))}
-                                            </Carousel.Item>
-                                        ))}
-                                    </Carousel>
-                                </Tab.Pane>
-
-                                <Tab.Pane eventKey="second">
-                                    <Carousel data-bs-theme="dark" interval={null}>
-                                    {comingSoonBooks && comingSoonBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
-                                            <Carousel.Item key={index}>
-                                                {comingSoonBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
-                                                ))}
-                                            </Carousel.Item>
-                                        ))}
-                                    </Carousel>
-                                </Tab.Pane>
-                                <Tab.Pane eventKey="three">
-                                    <Carousel data-bs-theme="dark" interval={null}>
-                                    {bestSellBooks && bestSellBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
-                                            <Carousel.Item key={index}>
-                                                {bestSellBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
-                                                ))}
-                                            </Carousel.Item>
-                                        ))}
-                                    </Carousel>
-                                </Tab.Pane>
+                                {this.renderCarousel("first", "WEEKBOOK", newBooks)}
+                                {this.renderCarousel("second", "WEEKBOOK", comingSoonBooks)}
+                                {this.renderCarousel("three", "WEEKBOOK", bestSellBooks)}
                             </Tab.Content>
 
                         </Tab.Container>

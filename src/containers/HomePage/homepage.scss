@@ -165,7 +165,7 @@
                 }
 
                 .name {
-                    font-size: 16px;
+                    font-size: 17px;
                     text-align: center;
                     margin: 15px 0;
                     height: 35px;
@@ -267,7 +267,6 @@
             margin: 2px 0;
 
             .percent-label {
-                display: inline-block;
                 max-width: 100%;
                 margin-bottom: 5px;
                 font-size: 14px;
@@ -421,7 +420,7 @@
 
     .img-product {
         margin: 0 auto;
-
+        display: contents;
         img {
             width: 135px;
             max-width: 100%;
@@ -493,37 +492,33 @@
     }
 }
 
+//CAROUSEL
+.carousel{
+    .carousel-control-prev,.carousel-control-next{
+        width: inherit;
+        text-align: center;
+        span {
+            background-color: #645E5E;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50% !important;
+            width: 30px !important;
+            height: 30px !important;
+            opacity: 0.8 !important;
+        }
+    }
+}
+
 // SLIDE WEEK BOOK
 .content-week-book {
     padding-bottom: 10px;
     background-color: #fff;
-
-    .carousel.slide {
-        a {
-           
-            display: contents;
-            width: inherit;
-            top: 88px;
-            text-align: center;
-            span {
-                background-color: #645E5E;
-                width: 1.5rem;
-                height: 1.5rem;
-                border-radius: 50% !important;
-                width: 30px !important;
-                height: 30px !important;
-                opacity: 0.8 !important;
-            }
-        }
-
         .carousel-inner {
             .carousel-item.active {
                 display: flex;
-
             }
 
         }
-    }
 }
 
 
@@ -611,4 +606,14 @@
             }
         }
     }
+}
+
+// SPINNERS
+.carousel {
+    .carousel-inner{
+        text-align: center;
+    }
+}
+.rank-week-book .container .wrapper-content-week {
+    justify-content: center;
 }

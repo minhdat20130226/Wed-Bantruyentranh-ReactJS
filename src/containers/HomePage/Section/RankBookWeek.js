@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Container, Button, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
+import Spinner from 'react-bootstrap/Spinner';
 import rankbook1 from '../../../assets/image/banner/rankbook1.png'
 import rankbook2 from '../../../assets/image/banner/rankbook2.png'
 
@@ -19,7 +20,7 @@ class RankBookWeek extends Component {
     componentDidMount() {
         this.fetchRecommendedBooks()
         this.fetchComingSoonBooks()
-         
+
     }
     fetchRecommendedBooks = async () => {
         try {
@@ -28,7 +29,7 @@ class RankBookWeek extends Component {
         } catch (error) {
             console.error('Error:', error);
         }
-};
+    };
     fetchComingSoonBooks = async () => {
         try {
             const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
@@ -36,7 +37,7 @@ class RankBookWeek extends Component {
         } catch (error) {
             console.error('Error:', error);
         }
-};
+    };
 
     renderSessionWeekBook(nameSession, imgSession, lsBook) {
         return (
@@ -48,43 +49,49 @@ class RankBookWeek extends Component {
                         </Nav.Item >
                     </Nav>
                     <div className='wrapper-content-week'>
-                        <div className='l-img-week'>
-                            <Nav.Link href='/'>
-                                <img src={imgSession}></img>
-                            </Nav.Link>
-                        </div>
-                        <Tab.Content className='content-week-book'>
-                            <Tab.Pane eventKey="first">
-                                <Carousel interval={null}>
-                                    {lsBook && lsBook.filter((_, index) => index % 6 === 0).map((book, index) => (
-                                        <Carousel.Item key={index}>
-                                            {lsBook.slice(index, index + 6).map((bookk, cardIndex) => (
-                                                <CardProduct key={cardIndex} typeCard={"RANKBOOK"} dataBook={bookk} />
+                        {lsBook ?
+                            <>
+                                <div className='l-img-week'>
+                                    <Nav.Link href='/'>
+                                        <img src={imgSession}></img>
+                                    </Nav.Link>
+                                </div>
+                                <Tab.Content className='content-week-book'>
+                                    <Tab.Pane eventKey="first">
+                                        <Carousel interval={null}>
+                                            {lsBook && lsBook.filter((_, index) => index % 6 === 0).map((book, index) => (
+                                                <Carousel.Item key={index}>
+                                                    {lsBook.slice(index, index + 6).map((bookk, cardIndex) => (
+                                                        <CardProduct key={cardIndex} typeCard={"RANKBOOK"} dataBook={bookk} />
+                                                    ))}
+                                                </Carousel.Item>
                                             ))}
-                                        </Carousel.Item>
-                                    ))}
-                                </Carousel>
-                            </Tab.Pane>
-                        </Tab.Content>
+                                        </Carousel>
+                                    </Tab.Pane>
+                                </Tab.Content>
+
+                            </> :
+                            <Spinner animation="border" variant="success" />}
+                    </div>
+
+                    <div className='wrapbtn-rank-book'>
+                        <Button className='btn-rank-book' variant="outline-danger" href='/'>Xem thêm ››</Button>
                     </div>
                 </Tab.Container>
-                <div className='wrapbtn-rank-book'>
-                    <Button className='btn-rank-book' variant="outline-danger" href='/'>Xem thêm ››</Button>
-                </div>
             </Container>
         )
     }
 
 
     render() {
-        const { searchInWeek, recommendedBooks, comingSoonBooks } =  this.state;
-        console.log('comingson ' ,  comingSoonBooks)
+        const { searchInWeek, recommendedBooks, comingSoonBooks } = this.state;
+        // console.log('comingson ', comingSoonBooks)
         return (
             <>
                 <div className='rank-week-book'>
-                        {/* {this.renderSessionWeekBook("TÌM KIẾM NHIỀU TRONG TUẦN", img, searchInWeek)} */}
-                        {this.renderSessionWeekBook("DANH MỤC ĐỀ CỬ",rankbook1,recommendedBooks)}
-                        {this.renderSessionWeekBook("SẮP RA MẮT",rankbook2,comingSoonBooks)}
+                    {/* {this.renderSessionWeekBook("TÌM KIẾM NHIỀU TRONG TUẦN", img, searchInWeek)} */}
+                    {this.renderSessionWeekBook("DANH MỤC ĐỀ CỬ", rankbook1, recommendedBooks)}
+                    {this.renderSessionWeekBook("SẮP RA MẮT", rankbook2, comingSoonBooks)}
                 </div>
 
             </>

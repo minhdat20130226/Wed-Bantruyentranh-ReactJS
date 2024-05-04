@@ -9,12 +9,13 @@ class BuyDialog extends Component {
     }
 
     render() {
+        const { typeSession } = this.props;
         const { dataBook } = this.props;
         return (
             <>
                 <div
                     className='buy-dialog'
-                    style={{left:'210px',top:'-20px'}}>
+                    style={{left:'210px',top: typeSession !== 'TOPIC' ? '-20px' : '50px' }}>
                     <Card style={{display:'block'}}>     
                         {dataBook && <Card.Body>
                                 <Card.Title className=''>{dataBook.name}</Card.Title>
