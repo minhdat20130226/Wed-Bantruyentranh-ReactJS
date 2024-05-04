@@ -230,14 +230,18 @@
             margin: 2px 0;
             font-size: 13px;
             text-align: left;
-
+           
             p {
+                margin-bottom: 0;
                 display: -webkit-box;
-                -webkit-line-clamp: 6;
+                -webkit-line-clamp: 4;   
                 -webkit-box-orient: vertical;
                 overflow: hidden;
-                margin-bottom: 0;
             }
+            a{
+                text-align: left !important;
+            }
+           
         }
 
         .price-txt {
@@ -412,11 +416,10 @@
 // CARD PRODUCT
 .card-product {
     width: 255px;
-    padding: 10px;
+    margin: 10px;
     background-color: #fff;
 
     .img-product {
-        display: block;
         margin: 0 auto;
 
         img {
@@ -497,7 +500,8 @@
 
     .carousel.slide {
         a {
-            display: block;
+           
+            display: contents;
             width: inherit;
             top: 88px;
             text-align: center;
@@ -572,8 +576,9 @@
                         }
 
                         .carousel-item {
+                            padding-top: 31px;
                             .card-product {
-                                width: 295px;
+                                width: 280px;
                                 border: none;
                                 .price-group {
                                     .price {
@@ -599,6 +604,7 @@
                 background-color: #fff;
                 text-align: center;
                 padding-bottom: 10px;
+                padding-top: 28px;
             .btn-rank-book {
                 padding: 5px 20px;
 
