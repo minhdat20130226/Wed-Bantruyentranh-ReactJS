@@ -26,12 +26,15 @@ class CardProduct extends Component {
             <>
                 {dataBook &&
                     <Card className='card-product'
-                        onMouseEnter={() => this.handleMouseEnter(typeCard)}
-                        onMouseLeave={this.handleMouseLeave}
+
                     >
-                        <Card.Link className='img-product' href='#'>
+                        <Card.Link className='img-product' href='#'
+                         onMouseEnter={() => this.handleMouseEnter(typeCard)}
+                         onMouseLeave={this.handleMouseLeave}
+                        >
                             {/* <Card.Img variant="top" src={dataBook.photoUrl} href='#' /> */}
-                            <Card.Img variant="top" src={img} href='#' />
+                            <Card.Img variant="top" src={img} href='#'/>
+                            {(this.state.nameCard === typeCard && this.state.nameCard !== "WEEKBOOK") && <BuyDialog dataBook={dataBook} />}
                         </Card.Link>
                         <Card.Body>
                             <Card.Link href='#' className='title-product'>{dataBook.name}</Card.Link>
@@ -46,9 +49,7 @@ class CardProduct extends Component {
                                 <span className='sale-off'>{dataBook.reductionRate}%</span>
                             </div>
                         </Card.Body>
-                        {
-                            (this.state.nameCard === typeCard && this.state.nameCard !== "WEEKBOOK") && <BuyDialog dataBook={dataBook} />
-                        }
+                       
                     </Card>
                 }
             </>

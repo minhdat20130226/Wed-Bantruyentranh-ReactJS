@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 import { Container, Card } from 'react-bootstrap';
 import imgTest from '../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg';
 import BuyDialog from '../../components/BuyDialog';
@@ -9,6 +10,7 @@ class TopicGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             nameCard: null,
             udInDayBook: null,
             maxIsLikeBook: null,
@@ -73,19 +75,18 @@ class TopicGroup extends Component {
             console.error('Error:', error);
         }
 
-    }
-    renderCardTopic(nameCard, headerText, dataBook, iconBackgroundClass,iconMainClass) {
+    } 
+    renderCardTopic(key,nameCard, headerText, dataBook, iconBackgroundClass,iconMainClass,seeMore) {
         return (
-          <Card
-            className='it'
-            onMouseEnter={() => this.handleMouseEnter(nameCard)}
-            onMouseLeave={this.handleMouseLeave}
-          >
+            <>
+            {dataBook? <Card className={key!==1?'it':''}>
             <Card.Header className=''>
               <h3 className='h5'>{headerText}</h3>
+               {seeMore && <Card.Link href="/">{seeMore}</Card.Link>}
             </Card.Header>
             {dataBook && (
-              <div>
+              <div   onMouseEnter={() => this.handleMouseEnter(nameCard)}
+            onMouseLeave={this.handleMouseLeave}>
                 <Card.Body>
                   <i className={iconBackgroundClass}>
                   {nameCard==="udInDayBook"?<span className=''>{dataBook.reductionRate}%</span>:<i className={iconMainClass}></i>}
@@ -100,11 +101,14 @@ class TopicGroup extends Component {
                 {Utils.formatAmount(dataBook.newPrice)}đ
                 </Card.Text>
                 <Card.Text className='del-price'>{Utils.formatAmount(dataBook.price)}đ</Card.Text>
+                {this.state.nameCard === nameCard && <BuyDialog dataBook={dataBook} typeSession={"TOPIC"}/>}
               </div>
             )}
-            {this.state.nameCard === nameCard && <BuyDialog dataBook={dataBook} />}
-          </Card>
+            </Card> : <Spinner animation="border" variant="success"/>}
+         
+            </>
         );
+       
       }
     render() {
         const { udInDayBook, maxIsLikeBook, popularBook, newBook } = this.state
@@ -115,10 +119,10 @@ class TopicGroup extends Component {
         return (
             <div className='topic-group'>
                 <Container>
-                    {this.renderCardTopic("udInDayBook", "Ưu đãi trong ngày", udInDayBook, "bi-circle-fill")}
-                    {this.renderCardTopic("maxIsLikeBook", "SÁCH HAY", maxIsLikeBook, "bi-circle-fill","bi-hand-thumbs-up-fill")}
-                    {this.renderCardTopic("popularBook", "Sản phẩm nổi bật", popularBook, "bi-circle-fill","bi-fire")}
-                    {this.renderCardTopic("newBook", "SÁCH MỚI", newBook, "bi-circle-fill","bi-bookmark-star-fill")}
+                    {this.renderCardTopic(1,"udInDayBook", "Ưu đãi trong ngày", udInDayBook, "bi-circle-fill")}
+                    {this.renderCardTopic(2,"maxIsLikeBook", "SÁCH HAY", maxIsLikeBook, "bi-circle-fill","bi-hand-thumbs-up-fill","Xem thêm")}
+                    {this.renderCardTopic(3,"popularBook", "Sản phẩm nổi bật", popularBook, "bi-circle-fill","bi-fire")}
+                    {this.renderCardTopic(4,"newBook", "SÁCH MỚI", newBook, "bi-circle-fill","bi-bookmark-star-fill","Xem thêm")}
                 </Container>
             </div>
         );
