@@ -89,7 +89,7 @@ class WeekBook extends Component {
                                         {newBooks && newBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
                                             <Carousel.Item key={index}>
                                                 {newBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
                                                 ))}
                                             </Carousel.Item>
                                         ))}
@@ -101,7 +101,7 @@ class WeekBook extends Component {
                                     {comingSoonBooks && comingSoonBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
                                             <Carousel.Item key={index}>
                                                 {comingSoonBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
                                                 ))}
                                             </Carousel.Item>
                                         ))}
@@ -112,7 +112,7 @@ class WeekBook extends Component {
                                     {bestSellBooks && bestSellBooks.filter((_, index) => index % 5 === 0).map((book, index) => (
                                             <Carousel.Item key={index}>
                                                 {bestSellBooks.slice(index, index + 5).map((bookk, cardIndex) => (
-                                                    <CardProduct key={cardIndex} visibleCardBuy={"WEEKBOOK"} dataBook={bookk} />
+                                                    <CardProduct key={cardIndex} typeCard={"WEEKBOOK"} dataBook={bookk} />
                                                 ))}
                                             </Carousel.Item>
                                         ))}

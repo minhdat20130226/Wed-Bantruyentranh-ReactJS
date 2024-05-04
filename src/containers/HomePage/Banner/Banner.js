@@ -24,10 +24,11 @@ class Banner extends Component {
 
   render() {
     const carouselItems = [
-      { nameIndex: 'ĐÓN ĐỌC', img: IMG1 },
-      { nameIndex: 'TRUYỆN HAY TRONG TUẦN', img: IMG2 },
-      { nameIndex: 'TRUYỆN MỚI', img: IMG1 },
-      { nameIndex: 'QUÀ TẶNG', img: IMG1 },
+      { nameIndex: 'SẢN PHẨM MỚI', img: "https://bookbuy.vn/Res/Images/Album/55c23d98-96ce-4478-9721-d0ee955c0070.jpg?w=880&scale=both&h=320&mode=crop" },
+      { nameIndex: 'ĐÓN ĐỌC', img: "https://bookbuy.vn/Res/Images/Album/2c7fe663-f09b-41fd-b367-4a484ad8bbae.jpg?w=880&scale=both&h=320&mode=crop" },
+      { nameIndex: 'TRUYỆN HAY TRONG TUẦN', img: "https://bookbuy.vn/Res/Images/Album/30172f9f-bd3a-48b3-9ec5-c7a110607a14.jpg?w=880&scale=both&h=320&mode=crop" },
+      { nameIndex: 'TRUYỆN MỚI', img: "https://bookbuy.vn/Res/Images/Album/d425cbf2-4fbf-49c0-8b5c-f3f14bc10992.jpg?w=880&scale=both&h=320&mode=crop" },
+      { nameIndex: 'QUÀ TẶNG', img: "https://bookbuy.vn/Res/Images/Album/3dc9db62-b9b6-4f44-a584-c67eaa332c31.jpg?w=880&scale=both&h=320&mode=crop" },
     ];
 
     return (

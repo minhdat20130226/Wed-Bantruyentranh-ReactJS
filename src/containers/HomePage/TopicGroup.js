@@ -3,6 +3,8 @@ import { Container, Card } from 'react-bootstrap';
 import imgTest from '../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg';
 import BuyDialog from '../../components/BuyDialog';
 import TopicGroupService from '../../servieces/TopicGroupService';
+import Utils from '../../constant/Utils';
+
 class TopicGroup extends Component {
     constructor(props) {
         super(props);
@@ -72,7 +74,7 @@ class TopicGroup extends Component {
         }
 
     }
-    renderCardTopic(nameCard, headerText, bookData, iconBackgroundClass,iconMainClass) {
+    renderCardTopic(nameCard, headerText, dataBook, iconBackgroundClass,iconMainClass) {
         return (
           <Card
             className='it'
@@ -82,34 +84,34 @@ class TopicGroup extends Component {
             <Card.Header className=''>
               <h3 className='h5'>{headerText}</h3>
             </Card.Header>
-            {bookData && (
+            {dataBook && (
               <div>
                 <Card.Body>
                   <i className={iconBackgroundClass}>
-                  {nameCard==="udInDayBook"?<span className=''>{bookData.reductionRate}%</span>:<i className={iconMainClass}></i>}
+                  {nameCard==="udInDayBook"?<span className=''>{dataBook.reductionRate}%</span>:<i className={iconMainClass}></i>}
                   </i>
                   <Card.Link href="#">
-                    {/* <Card.Img variant="top" src={bookData.photoUrl} /> */}
+                    {/* <Card.Img variant="top" src={dataBook.photoUrl} /> */}
                     <Card.Img variant="top" src={imgTest} />
                   </Card.Link>
-                  <Card.Text className='name'>{bookData.name}</Card.Text>
+                  <Card.Text className='name'>{dataBook.name}</Card.Text>
                 </Card.Body>
                 <Card.Text className='price'>
-                  {bookData.price * (bookData.reductionRate / 100)}đ
+                {Utils.formatAmount(dataBook.newPrice)}đ
                 </Card.Text>
-                <Card.Text className='del-price'>{bookData.price}</Card.Text>
+                <Card.Text className='del-price'>{Utils.formatAmount(dataBook.price)}đ</Card.Text>
               </div>
             )}
-            {this.state.nameCard === nameCard && <BuyDialog data={bookData} />}
+            {this.state.nameCard === nameCard && <BuyDialog dataBook={dataBook} />}
           </Card>
         );
       }
     render() {
         const { udInDayBook, maxIsLikeBook, popularBook, newBook } = this.state
-        console.log('a', udInDayBook,
-            'b', maxIsLikeBook,
-            'c', popularBook,
-            'd', newBook)
+        // console.log('a', udInDayBook,
+        //     'b', maxIsLikeBook,
+        //     'c', popularBook,
+        //     'd', newBook)
         return (
             <div className='topic-group'>
                 <Container>
