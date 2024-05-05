@@ -1,36 +1,119 @@
 import React, { Component } from 'react';
-import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, Form, FormControl, Button, ListGroup } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import './Header.scss'
 import logo from '../../assets/logo-bookbuy.png';
 import { PATH } from '../../utils/constant';
-
+import SearchBookService from '../../servieces/SearchBookService';
 import categoryService from '../../servieces/categoryService';
+import CardProductSearch from '../CardProductSearch.';
+
 class HeaderCenter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: 'Tất cả',
-      genresName: []
+      genresFind: 'Tất cả',
+      valueFind: null,
+      genresName: null,
+      dataInfoSearch: null,
     };
   }
 
-  handleItemClick = (itemTitle) => {
-    this.setState({ selectedItem: itemTitle });
-  };
+  handleGenresNameClick = (itemTitle) => {
+    this.setState({ genresFind: itemTitle });
+  }
 
-    async componentDidMount() {
+  handleValueFindClick = (event) => {
+    const valueFind = event.target.value.trim();
+    this.setState({ valueFind });
+    this.fetchInfoSearch(this.state.genresFind, valueFind);
+    console.log('dataInfoSearch',valueFind)
+  }
+
+  componentDidMount() {
+    this.fetchGenresName()
+  }
+
+  fetchGenresName = async () => {
     try {
-        const responseData = await categoryService.getGenresName();
-        this.setState({ genresName: responseData });
+      const responseData = await categoryService.getCategoryGenres();
+      this.setState({ genresName: Object.keys(responseData) });
     } catch (error) {
-        console.error('Service Error:', error);
+      console.error('Service Error:', error);
     }
-}
+  }
+
+  fetchInfoSearch = async (genresOption, valueFind) => {
+    try {
+      const responseData = await SearchBookService.findInfoSearch(genresOption, valueFind);
+      this.setState({ dataInfoSearch: responseData })
+    }
+    catch (error) {
+      console.error('Service Error:', error);
+    }
+  }
+
+  renderListGenresFind(genresName) {
+    return (
+      <DropdownButton id="dropdown-button-genres-find" className='dropdown-search' title={this.state.genresFind}>
+        <Dropdown.Item onClick={() => this.handleGenresNameClick('Tất cả')}>Tất cả</Dropdown.Item>
+        {Array.isArray(genresName) && genresName.map((genre, index) => (
+          <Dropdown.Item key={index} onClick={() => this.handleGenresNameClick(genre)}>
+            {genre}
+          </Dropdown.Item>
+        ))}
+      </DropdownButton>
+
+    )
+  }
+  renderSearchForm(dataInfoSearch) {
+    return (
+      <>
+        <Form className="d-flex me-3 form-search">
+          <FormControl type="search" placeholder="Bạn cần tìm gì?" className="search-input" aria-label="Search"
+            onChange={(event) => this.handleValueFindClick(event)}
+          />
+          <Button className='btn-find' variant="outline-success">
+            <i class="bi bi-search"></i>
+          </Button>
+          {dataInfoSearch && this.renderPanelContainSearch(dataInfoSearch)}
+        </Form>
+
+      </>
+    )
+  }
+  renderPanelContainSearch(dataInfoSearch) {
+    return (
+      <>
+      <ListGroup id='panel-contain-search'>
+        <ListGroup.Item className='title' style={{
+          color: '#f15c22',
+          fontSize: '18px',
+          fontWeight: 500,
+          paddingLeft: '8px',
+          paddingBottom: '10px'
+        }}>Sản phẩm liên quan</ListGroup.Item>
+        {dataInfoSearch && dataInfoSearch.map((dataBook, index) => {
+          return (
+            <ListGroup.Item key={index}>
+              <CardProductSearch key={index} dataBook={dataBook}/>
+            </ListGroup.Item>
+          );
+        })}
+          <ListGroup.Item>
+            <CardProductSearch/>
+          </ListGroup.Item>
+       
+      </ListGroup>
+      </>
+    )
+  }
+
   render() {
-    
-    console.log(this.state.genresName)
+    const { genresName } = this.state
+    const { dataInfoSearch } = this.state
+    // console.log('aaaa', genresName)
     return (
       <Navbar expand="lg" className="bg-body-tertiary header-search">
         <Container >
@@ -42,22 +125,9 @@ class HeaderCenter extends Component {
               <img src={logo} alt="Logo" height="30" />
             </Navbar.Brand>
             <div className='search'>
-              <DropdownButton id="dropdown-button-genres-find" className='dropdown-search' title={this.state.selectedItem}>
-                <Dropdown.Item onClick={() => this.handleItemClick('Tất cả')}>Tất cả</Dropdown.Item>
-
-                {Array.isArray(this.state.genresName) && this.state.genresName.map((genre, index) => (
-                  <Dropdown.Item key={index} onClick={() => this.handleItemClick(genre)}>
-                    {genre}
-                  </Dropdown.Item>
-                ))} 
-              </DropdownButton>
+              {this.renderListGenresFind(genresName)}
               {/* Search form */}
-              <Form className="d-flex me-3 form-search">
-                <FormControl type="search" placeholder="Bạn cần tìm gì?" className="search-input" aria-label="Search" />
-                <Button className='btn-find' variant="outline-success">
-                  <i class="bi bi-search"></i>
-                </Button>
-              </Form>
+              {this.renderSearchForm(dataInfoSearch)}
             </div>
             {/* Hotline */}
             <div className="hot-line">
@@ -67,7 +137,6 @@ class HeaderCenter extends Component {
                 <p className="">Hot line</p>
               </span>
             </div>
-
             {/* Shopping cart */}
             <Nav className='catory'>
               <i className="bi bi-cart"></i>
