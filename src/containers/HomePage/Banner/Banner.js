@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Carousel, Container,Image } from 'react-bootstrap';
-import IMG1 from '../../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg';
-import IMG2 from '../../../assets/image/ghg.jpg';
 import { Link } from 'react-router-dom';
- import { PATH } from '../../../utils/constant';
+import { PATH } from '../../../utils/constant';
+import ProductCartAdd from '../../../components/ProductCartAdd';
 
 class Banner extends Component {
   constructor(props) {
