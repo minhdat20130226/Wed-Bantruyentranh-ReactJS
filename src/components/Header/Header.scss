@@ -188,7 +188,7 @@
     padding: 0 !important;
 
     .dropdown {
-        button {
+        button,a{
             border: none;
             border-radius: 0;
             background-color: #fff !important;
@@ -246,7 +246,7 @@
             border: 0;
 
             .item {
-                button {
+                a {
                     width: 235px;
                     display: flex;
                     justify-content: space-between;
