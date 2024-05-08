@@ -8,6 +8,7 @@ import { PATH } from '../../utils/constant';
 import SearchBookService from '../../servieces/SearchBookService';
 import categoryService from '../../servieces/categoryService';
 import CardProductSearch from '../CardProductSearch.';
+import Utils from '../../constant/Utils';
 
 class HeaderCenter extends Component {
   constructor(props) {
@@ -67,6 +68,7 @@ class HeaderCenter extends Component {
 
     )
   }
+
   renderSearchForm(dataInfoSearch) {
     return (
       <>
@@ -83,6 +85,7 @@ class HeaderCenter extends Component {
       </>
     )
   }
+
   renderPanelContainSearch(dataInfoSearch) {
     return (
       <>
@@ -109,15 +112,31 @@ class HeaderCenter extends Component {
       </>
     )
   }
-
+  renderCartProduct(){
+    const existing_idProductCartSelect = Utils.LocalStorageGetItem('idProductCartSelect') || [];
+    const totalProductAdd = existing_idProductCartSelect.reduce((total, bookLocalStorage) => total + bookLocalStorage.numberBuy, 0);
+    return(
+      <>
+      <Nav className='catory'>
+      <i className="bi bi-cart"></i>
+        <Nav.Link href={PATH.CART}>
+          {
+            totalProductAdd !==0?
+            <> <span style={{ color:'#f15c22',fontSize:'13px' }}>{totalProductAdd}&nbsp;sản phẩm</span></>
+            :
+            <><span>Giỏ hàng&nbsp;(0)</span></>
+          }
+        </Nav.Link>
+    </Nav>
+      </>
+    )
+  }
   render() {
     const { genresName } = this.state
     const { dataInfoSearch } = this.state
-    // console.log('aaaa', genresName)
     return (
       <Navbar expand="lg" className="bg-body-tertiary header-search">
         <Container >
-
           {/* Toggle button for collapsed nav */}
           <Navbar.Collapse id="navbarScroll">
             {/* Logo */}
@@ -138,12 +157,7 @@ class HeaderCenter extends Component {
               </span>
             </div>
             {/* Shopping cart */}
-            <Nav className='catory'>
-              <i className="bi bi-cart"></i>
-              <Nav.Link href={PATH.CART}>Giỏ hàng
-                <span style={{ marginLeft: "5px" }}>(0)</span>
-              </Nav.Link>
-            </Nav>
+            {this.renderCartProduct()}
           </Navbar.Collapse>
         </Container>
       </Navbar>

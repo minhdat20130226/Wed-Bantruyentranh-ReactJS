@@ -62,7 +62,7 @@ class RankBookWeek extends Component {
                                             {lsBook && lsBook.filter((_, index) => index % 6 === 0).map((book, index) => (
                                                 <Carousel.Item key={index}>
                                                     {lsBook.slice(index, index + 6).map((bookk, cardIndex) => (
-                                                        <CardProduct key={cardIndex} typeCard={"RANKBOOK"} dataBook={bookk} />
+                                                        <CardProduct key={bookk.id} typeCard={"RANKBOOK"} dataBook={bookk} />
                                                     ))}
                                                 </Carousel.Item>
                                             ))}

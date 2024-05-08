@@ -6,7 +6,7 @@ import CheckOrder from '../containers/HeaderTop/CheckOrder';
 import Login from '../containers/Auth/Login';
 import Register from '../containers/Auth/Register';
 import HomePage from '../containers/HomePage/HomePage';
-import Cart from '../containers/HeaderCenter/Cart';
+import CartPage from '../containers/HeaderCenter/CartPage';
 import { PATH } from '../utils/constant';
 import QuestionTG from '../containers/HeaderBottom/QuestionTG';
 import Promotionprogram from '../containers/HeaderBottom/Promotionprogram';
@@ -21,7 +21,7 @@ import Sale from '../containers/HeaderBottom/Sale';
     { path: PATH.CHECK_ORDER, component: CheckOrder },
     { path: PATH.LOGIN, component: Login },
     { path: PATH.REGISTER, component: Register },
-    { path: PATH.CART, component: Cart },
+    { path: PATH.CART, component: CartPage },
     { path: PATH.QUESTIONTG, component: QuestionTG },
     { path: PATH.PROMOTIONPROGRAM, component: Promotionprogram },
     { path: PATH.SEARCHBOOKPAGE, component: SearchBookPage },
