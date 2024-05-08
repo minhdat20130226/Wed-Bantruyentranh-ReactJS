@@ -3,8 +3,8 @@ import { useLocation } from 'react-router-dom';
 
 class SearchBookPage extends Component {
     render() {
-        const { state } = this.props.location || {};
-        console.log("State từ location:", state.dataGenre);
+        // const { state } = this.props.location || {};
+        // console.log("State từ location:", state.dataGenre);
         
         return (
             <>
@@ -15,11 +15,12 @@ class SearchBookPage extends Component {
 }
 
 // Wrapper function component để cung cấp location thông qua props
-function LocationWrapper(Component) {
-    return function WrappedComponent(props) {
-        const location = useLocation();
-        return <Component {...props} location={location} />;
-    };
-}
+// function LocationWrapper(Component) {
+//     return function WrappedComponent(props) {
+//         const location = useLocation();
+//         return <Component {...props} location={location} />;
+//     };
+// }
 
-export default LocationWrapper(SearchBookPage);
+// export default LocationWrapper(SearchBookPage);
+export default SearchBookPage;
