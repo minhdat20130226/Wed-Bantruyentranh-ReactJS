@@ -37,15 +37,15 @@ class CardProduct extends Component {
                             {(this.state.nameCard === typeCard && this.state.nameCard !== "WEEKBOOK") && <BuyDialog dataBook={dataBook} />}
                         </Card.Link>
                         <Card.Body>
-                            <Card.Link href='#' className='title-product'>{dataBook.name}</Card.Link>
+                            <Card.Link href='#' className='title-product'>{dataBook.storiesBookDTO.name}</Card.Link>
                             <Card.Text className='author-product'>
-                                {dataBook.authorList.map(author => author.name).join(' ')}
+                                {dataBook.storyAuthorName}
                             </Card.Text>
                             <div className='price-group'>
-                                <span className='price'>{Utils.formatAmount(dataBook.newPrice)}
-                                    <span class="cur">₫</span>
+                                <span className='price'>{Utils.formatAmount(dataBook.storiesBookDTO.newPrice)}
+                                    <span className="cur">₫</span>
                                 </span>
-                                <span className='del-price'>{Utils.formatAmount(dataBook.price)}</span>
+                                <span className='del-price'>{Utils.formatAmount(dataBook.storiesBookDTO.price)}</span>
                                 <span className='sale-off'>{dataBook.reductionRate}%</span>
                             </div>
                         </Card.Body>

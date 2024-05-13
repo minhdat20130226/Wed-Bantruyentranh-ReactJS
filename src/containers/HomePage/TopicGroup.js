@@ -39,7 +39,7 @@ class TopicGroup extends Component {
     fetchUdInDayBook = async () => {
         try {
             const udInDayBook = await TopicGroupService.getUdInDayBook();
-            this.setState({ udInDayBook: udInDayBook })
+            this.setState({ udInDayBook })
         }
         catch (error) {
             console.error('Error:', error);
@@ -49,7 +49,7 @@ class TopicGroup extends Component {
     fetchMaxIsLikeBook = async () => {
         try {
             const maxIsLikeBook = await TopicGroupService.getMaxIsLikeBook();
-            this.setState({ maxIsLikeBook: maxIsLikeBook })
+            this.setState({ maxIsLikeBook })
         }
         catch (error) {
             console.error('Error:', error);
@@ -59,7 +59,7 @@ class TopicGroup extends Component {
     fetchPopularBook = async () => {
         try {
             const popularBook = await TopicGroupService.getPopularBook();
-            this.setState({ popularBook: popularBook })
+            this.setState({ popularBook })
         }
         catch (error) {
             console.error('Error:', error);
@@ -92,15 +92,15 @@ class TopicGroup extends Component {
                   {nameCard==="udInDayBook"?<span className=''>{dataBook.reductionRate}%</span>:<i className={iconMainClass}></i>}
                   </i>
                   <Card.Link href="#">
-                    {/* <Card.Img variant="top" src={dataBook.photoUrl} /> */}
+                    {/* <Card.Img variant="top" src={dataBook.storiesBookDTO.photoUrl} /> */}
                     <Card.Img variant="top" src={imgTest} />
                   </Card.Link>
-                  <Card.Text className='name'>{dataBook.name}</Card.Text>
+                  <Card.Text className='name'>{dataBook.storiesBookDTO.name}</Card.Text>
                 </Card.Body>
                 <Card.Text className='price'>
-                {Utils.formatAmount(dataBook.newPrice)}đ
+                {Utils.formatAmount(dataBook.storiesBookDTO.newPrice)}đ
                 </Card.Text>
-                <Card.Text className='del-price'>{Utils.formatAmount(dataBook.price)}đ</Card.Text>
+                <Card.Text className='del-price'>{Utils.formatAmount(dataBook.storiesBookDTO.price)}đ</Card.Text>
                 {this.state.nameCard === nameCard && <BuyDialog dataBook={dataBook} typeSession={"TOPIC"}/>}
               </div>
             )}

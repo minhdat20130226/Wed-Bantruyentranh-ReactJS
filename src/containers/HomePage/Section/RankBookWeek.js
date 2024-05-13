@@ -25,7 +25,7 @@ class RankBookWeek extends Component {
     fetchRecommendedBooks = async () => {
         try {
             const recommendedBooks = await RankBookWeekService.getRecommendedBooks();
-            this.setState({ recommendedBooks: recommendedBooks });
+            this.setState({ recommendedBooks });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -33,7 +33,7 @@ class RankBookWeek extends Component {
     fetchComingSoonBooks = async () => {
         try {
             const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
-            this.setState({ comingSoonBooks: comingSoonBooks });
+            this.setState({ comingSoonBooks });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -62,7 +62,7 @@ class RankBookWeek extends Component {
                                             {lsBook && lsBook.filter((_, index) => index % 6 === 0).map((book, index) => (
                                                 <Carousel.Item key={index}>
                                                     {lsBook.slice(index, index + 6).map((bookk, cardIndex) => (
-                                                        <CardProduct key={bookk.id} typeCard={"RANKBOOK"} dataBook={bookk} />
+                                                        <CardProduct key={bookk.storiesBookDTO.id} typeCard={"RANKBOOK"} dataBook={bookk} />
                                                     ))}
                                                 </Carousel.Item>
                                             ))}

@@ -77,7 +77,7 @@ class HeaderCenter extends Component {
             onChange={(event) => this.handleValueFindClick(event)}
           />
           <Button className='btn-find' variant="outline-success">
-            <i class="bi bi-search"></i>
+            <i className="bi bi-search"></i>
           </Button>
           {dataInfoSearch && this.renderPanelContainSearch(dataInfoSearch)}
         </Form>
@@ -104,10 +104,6 @@ class HeaderCenter extends Component {
             </ListGroup.Item>
           );
         })}
-          <ListGroup.Item>
-            <CardProductSearch/>
-          </ListGroup.Item>
-       
       </ListGroup>
       </>
     )
@@ -150,7 +146,7 @@ class HeaderCenter extends Component {
             </div>
             {/* Hotline */}
             <div className="hot-line">
-              <i class="bi bi-headset"></i>
+              <i className="bi bi-headset"></i>
               <span className="">
                 <p className='txt-phone' style={{ color: "#eb7c26", fontWeight: 700 }}>0933 109 009</p>
                 <p className="">Hot line</p>
