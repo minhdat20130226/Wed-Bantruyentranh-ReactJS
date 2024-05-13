@@ -20,7 +20,7 @@ class HeaderTop extends Component {
                     <Form className="d-flex me-3 form-search form-search-top">
                       <FormControl type="search" placeholder="Bạn cần tìm gì?" className="search-input" aria-label="Search" />
                       <Button className='btn-find' variant="outline-success">
-                        <i class="bi bi-search"></i>
+                        <i className="bi bi-search"></i>
                       </Button>
                     </Form>
                   </>
@@ -38,8 +38,8 @@ class HeaderTop extends Component {
             <Nav className="right-headertop">
               <Link className="nav-link" to={PATH.UDTI}><i className="bi bi-gift"></i>Ưu đãi tiện ích</Link>
               <Link className="nav-link" to={PATH.CHECK_ORDER}><i className="bi bi-box-seam"></i>Kiểm tra đơn hàng</Link>
-              <Link className="nav-link" to={PATH.LOGIN}><i className="bi bi-box-arrow-right"></i>Đăng nhập</Link>
-              <Link className="nav-link" to={PATH.REGISTER}><i className="bi bi-person-plus"></i>Đăng ký</Link>
+              <Link className="nav-link" to={PATH.LOGINPAGE}><i className="bi bi-box-arrow-right"></i>Đăng nhập</Link>
+              <Link className="nav-link" to={PATH.REGISTERPAGE}><i className="bi bi-person-plus"></i>Đăng ký</Link>
             </Nav>
           </Container>
         </Navbar>

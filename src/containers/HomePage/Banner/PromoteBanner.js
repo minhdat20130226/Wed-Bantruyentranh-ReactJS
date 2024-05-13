@@ -1,12 +1,11 @@
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom/client';
 import { Container, Image, Col, Row } from 'react-bootstrap';
-import imgTest from '../../../assets/image/55c23d98-96ce-4478-9721-d0ee955c0070.jpg'
+import PromoteBanner1 from '../../../assets/image/banner/promote-banner1.png'
+import PromoteBanner2 from '../../../assets/image/banner/promote-banner2.png'
+import PromoteBanner3 from '../../../assets/image/banner/promote-banner3.png'
+
 class PromoteBanner extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
 
@@ -15,13 +14,13 @@ class PromoteBanner extends Component {
                 <Container>
                     <Row>
                         <Col xs={6} md={4}>
-                            <Image src={imgTest} fluid  />
+                            <Image src={PromoteBanner1} fluid  />
                         </Col>
                         <Col xs={6} md={4}>
-                            <Image src={imgTest} fluid  />
+                            <Image src={PromoteBanner3} fluid  />
                         </Col>
                         <Col xs={6} md={4}>
-                            <Image src={imgTest} fluid  />
+                            <Image src={PromoteBanner2} fluid  />
                         </Col>
                     </Row>
                 </Container>

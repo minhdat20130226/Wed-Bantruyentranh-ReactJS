@@ -22,6 +22,7 @@ class HeaderBottom extends Component {
                     <div className='main-box-position'>
                         <DropdownButton
                             id="dropdown-basic-button"
+                            href={PATH.SEARCHBOOKPAGE}
                             title={<>
                                 <i className="bi bi-list"></i>
                                 <span className='title-dm'>Danh mục truyện</span>

@@ -30,7 +30,7 @@ class WeekBook extends Component {
     fetchNewBooks = async () => {
         try {
             const newBooks = await WeekBookService.getAllNewBook();
-            this.setState({ newBooks: newBooks });
+            this.setState({ newBooks });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -40,7 +40,7 @@ class WeekBook extends Component {
         try {
             const comingSoonBooks = await WeekBookService.getAllComingSoonBook();
             console.log("adw", comingSoonBooks)
-            this.setState({ comingSoonBooks: comingSoonBooks });
+            this.setState({ comingSoonBooks });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -49,7 +49,7 @@ class WeekBook extends Component {
     fetchBestSellBooks = async () => {
         try {
             const bestSellBooks = await WeekBookService.getAllBestSellBook();
-            this.setState({ bestSellBooks: bestSellBooks });
+            this.setState({ bestSellBooks });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -62,7 +62,7 @@ class WeekBook extends Component {
                         dataBook.filter((_, index) => index % 5 === 0).map((book, index) => (
                             <Carousel.Item key={index}>
                                 {dataBook.slice(index, index + 5).map((bookk, cardIndex) => (
-                                    <CardProduct key={bookk.id} typeCard={typeCard} dataBook={bookk} />
+                                    <CardProduct key={bookk.storiesBookDTO.id} typeCard={typeCard} dataBook={bookk} />
                                 ))}
                             </Carousel.Item>
                         )):
@@ -94,7 +94,7 @@ class WeekBook extends Component {
                                     <Nav.Link eventKey="three">Sách bán chạy</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item className='l view-more-link'>
-                                    <Nav.Link href={PATH.SEARCHBOOKPAGE} >Xem thêm<i class="bi bi-caret-right-fill"></i></Nav.Link>
+                                    <Nav.Link href={PATH.SEARCHBOOKPAGE} >Xem thêm<i className="bi bi-caret-right-fill"></i></Nav.Link>
                                 </Nav.Item>
                             </Nav>
                             <Tab.Content className='content-week-book'>
