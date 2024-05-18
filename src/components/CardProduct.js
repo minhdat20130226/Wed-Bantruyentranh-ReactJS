@@ -28,14 +28,16 @@ class CardProduct extends Component {
                     <Card className='card-product'
 
                     >
-                        <Card.Link className='img-product' href='#'
+                        <div className='wrap-buydialog'
                          onMouseEnter={() => this.handleMouseEnter(typeCard)}
                          onMouseLeave={this.handleMouseLeave}
                         >
+                        <Card.Link className='img-product' href='#' >
                             {/* <Card.Img variant="top" src={dataBook.photoUrl} href='#' /> */}
                             <Card.Img variant="top" src={img} href='#'/>
-                            {(this.state.nameCard === typeCard && this.state.nameCard !== "WEEKBOOK") && <BuyDialog dataBook={dataBook} />}
-                        </Card.Link>
+                        </Card.Link>   
+                        {(this.state.nameCard === typeCard && this.state.nameCard !== "WEEKBOOK") && <BuyDialog dataBook={dataBook} />}
+                        </div>
                         <Card.Body>
                             <Card.Link href='#' className='title-product'>{dataBook.storiesBookDTO.name}</Card.Link>
                             <Card.Text className='author-product'>

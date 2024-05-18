@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Container, Button, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
-import Spinner from 'react-bootstrap/Spinner';
 import rankbook1 from '../../../assets/image/banner/rankbook1.png'
 import rankbook2 from '../../../assets/image/banner/rankbook2.png'
 
@@ -49,7 +48,7 @@ class RankBookWeek extends Component {
                         </Nav.Item >
                     </Nav>
                     <div className='wrapper-content-week'>
-                        {lsBook ?
+                        {lsBook &&
                             <>
                                 <div className='l-img-week'>
                                     <Nav.Link href='/'>
@@ -70,8 +69,7 @@ class RankBookWeek extends Component {
                                     </Tab.Pane>
                                 </Tab.Content>
 
-                            </> :
-                            <Spinner animation="border" variant="success" />}
+                            </>}
                     </div>
 
                     <div className='wrapbtn-rank-book'>

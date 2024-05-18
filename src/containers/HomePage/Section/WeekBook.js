@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Container, Nav, Tab, Carousel, Link } from 'react-bootstrap';
 import CardProduct from '../../../components/CardProduct';
-import Spinner from 'react-bootstrap/Spinner';
 import { PATH } from '../../../utils/constant'
 import WeekBookService from '../../../servieces/WeekBookService';
 
@@ -58,15 +57,14 @@ class WeekBook extends Component {
         return (
             <Tab.Pane eventKey={eventKey}>
                 <Carousel data-bs-theme="dark" interval={null}>
-                   { dataBook?
+                   { dataBook &&
                         dataBook.filter((_, index) => index % 5 === 0).map((book, index) => (
                             <Carousel.Item key={index}>
                                 {dataBook.slice(index, index + 5).map((bookk, cardIndex) => (
                                     <CardProduct key={bookk.storiesBookDTO.id} typeCard={typeCard} dataBook={bookk} />
                                 ))}
                             </Carousel.Item>
-                        )):
-                        <Spinner animation="border" variant="success" />}
+                        ))}
                 </Carousel>
             </Tab.Pane>
         )

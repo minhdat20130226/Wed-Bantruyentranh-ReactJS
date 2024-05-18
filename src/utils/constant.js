@@ -11,8 +11,8 @@ export const PATH = {
     QUESTIONTG: '/cau-hoi-thuong-gap',
     PROMOTIONPROGRAM: '/chuong-trinh-khuyen-mai',
     SEARCHBOOKPAGE: '/tim-sach',
-    PRODUCTS_SEARCH_SESSION:'/tim-sach/:session',
-    PRODUCTS_SEARCH_SESSION_ITEM:'/tim-sach/:session/:item',
+    PRODUCTS_SEARCH_SESSION:'/tim-sach/:codeCategory',
+    PRODUCTS_SEARCH_SESSION_ITEM:'/tim-sach/:codeCategory/:valueSession',
     SALE: '/sale-soc-xa-kho',
     SYSTEM: '/system',
 };

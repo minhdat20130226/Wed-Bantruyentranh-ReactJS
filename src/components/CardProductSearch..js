@@ -18,15 +18,15 @@ class CardProductSearch extends Component {
                 {dataBook &&
                     <Card className='card-product-search'>
                         <Card.Link className='img-product' href='#' >
-                            {/* <Card.Img variant="top" src={dataBook.photoUrl} href='#' /> */}
+                            {/* <Card.Img variant="top" src={dataBook.storiesBookDTO.photoUrl} href='#' /> */}
                             <Card.Img variant="top" src={img} href='#' />
                             <Card.Body>
-                                <Card.Text href='#' className='title-product'>{dataBook.name}</Card.Text>
+                                <Card.Text href='#' className='title-product'>{dataBook.storiesBookDTO.name}</Card.Text>
                                 <div className='price-group'>
-                                    <span className='price'>{Utils.formatAmount(dataBook.newPrice)}
-                                        <span class="cur">₫</span>
+                                    <span className='price'>{Utils.formatAmount(dataBook.storiesBookDTO.newPrice)}
+                                        <span className="cur">₫</span>
                                     </span>
-                                    <span className='del-price'>{Utils.formatAmount(dataBook.price)}₫</span>
+                                    <span className='del-price'>{Utils.formatAmount(dataBook.storiesBookDTO.price)}₫</span>
                                 </div>
                             </Card.Body>
                         </Card.Link>
